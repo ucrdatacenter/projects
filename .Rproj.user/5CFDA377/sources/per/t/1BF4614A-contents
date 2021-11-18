@@ -1,3 +1,4 @@
+
 # libraries --------------------------------------------------------------------
 library(tidyverse)
 library(ggraph)
@@ -56,3 +57,39 @@ write.csv(AsellusAquaticus, "Asellus Aquaticus.csv")
 
 
 # Asselus Aquaticus mapping ----------------------------------------------------
+
+
+# map visualization ------------------------------------------------------------
+# libraries --------------------------------------------------------------------
+
+library(tidyverse)
+library(ggplot2)
+library(mapdata)
+library(dplyr)
+
+nl <- map_data('world2', 'netherlands')
+
+# viewing map of Netherlands only
+# ggplot(nl, aes(x = long, y = lat, group = group)) +
+#  geom_polygon()
+
+lon_lan <- Asellus_Aquaticus %>%
+  select(decimalLatitude, decimalLongitude) %>%
+  filter(!is.na(decimalLatitude)) %>%
+  filter(!is.na(decimalLongitude))
+
+binded <- qpcR:::cbind.na(nl, lon_lan)
+
+# simple mapping
+ggplot(binded, aes(long, lat, group = group)) +
+  geom_polygon() +
+  geom_point(aes(decimalLongitude, decimalLatitude))
+
+# extra elements mapping
+AsellusAquaticus_map <- ggplot(binded, aes(long, lat, group = group)) +
+  geom_polygon() +
+  labs(title = "Distribution of Asellus Aquaticus",
+       caption = "Occurrences data retrieved from Dutch Foundation for Applied Research (STOWA)") +
+  theme(plot.title = element_text(color = "brown", hjust = 0.5, vjust = -3),
+        plot.caption = element_text(color = "brown", vjust = 4.5, hjust = 0.98)) +
+  geom_point(aes(decimalLongitude, decimalLatitude), color = "brown")

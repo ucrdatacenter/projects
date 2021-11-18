@@ -3,7 +3,7 @@
     "path": "~/GitHub/projects/Environmental Science/STOWA project/Asellus Aquaticus/Asellus Aquaticus.R",
     "project_path": "Environmental Science/STOWA project/Asellus Aquaticus/Asellus Aquaticus.R",
     "type": "r_source",
-    "hash": "0",
+    "hash": "3387580192",
     "contents": "",
     "dirty": false,
     "created": 1635688643055.0,
@@ -13,15 +13,15 @@
         "tempName": "Untitled1",
         "source_window_id": "",
         "Source": "Source",
-        "cursorPosition": "58,0",
-        "scrollLine": "30"
+        "cursorPosition": "88,0",
+        "scrollLine": "67"
     },
     "folds": "",
-    "lastKnownWriteTime": 1635688676,
+    "lastKnownWriteTime": 1635690186,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1635688677004,
+    "last_content_update": 1635690186433,
     "read_only": false,
     "read_only_alternatives": []
 }
