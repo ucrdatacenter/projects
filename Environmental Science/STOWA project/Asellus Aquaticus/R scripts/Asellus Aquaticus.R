@@ -63,7 +63,7 @@ AsellusAquaticus_dendrogram <- parse_tax_data(taxonomy_AA, class_cols = 1:7) %>%
 AsellusAquaticus <- STOWA %>%
   filter(species == "Asellus aquaticus") %>%
   filter(countryCode == "NL") %>%
-  filter(year > 2000 & year < 2010) %>%
+  filter(year >= 2000 & year =< 2010) %>%
   select(species, decimalLatitude, decimalLongitude, eventDate, year)
 
 write.csv(AsellusAquaticus, "Asellus Aquaticus.csv")
