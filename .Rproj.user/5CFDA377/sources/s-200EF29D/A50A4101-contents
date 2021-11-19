@@ -1,6 +1,7 @@
 # libraries --------------------------------------------------------------------
 library(tidyverse)
 library(ggraph)
+library(ggplot2)
 library(tidygraph)
 
 # loading STOWA data -----------------------------------------------------------
@@ -17,6 +18,8 @@ Arthropoda <- STOWA_specieslist %>%
   filter(phylum == "Arthropoda")
 Malacostraca <- STOWA_specieslist %>%
   filter(class == "Malacostraca")
+Isopoda <- STOWA_specieslist %>%
+  filter(order == "Isopoda")
 taxonomy_AA <- STOWA_specieslist %>%
   filter(species == "Asellus aquaticus")
 
@@ -25,24 +28,32 @@ taxonomy_AA <- STOWA_specieslist %>%
 library(metacoder)
 library(taxa)
 
-# dendrogram of Arthropods -----------------------------------------------------
-Arthropoda <- parse_tax_data(Arthropoda, class_cols = 1:7) %>%
+# dendrogram of phylum Arthropods -----------------------------------------------------
+Arthropoda_dendrogram <- parse_tax_data(Arthropoda, class_cols = 1:7) %>%
   filter_taxa(taxon_names != "") %>%
   heat_tree(node_label = taxon_names,
             node_color = n_obs,
             node_size = n_obs,
             layout = "da")
 
-# dendrogram of malacostraca ---------------------------------------------------
+# dendrogram of subclass malacostraca ---------------------------------------------------
 # you can find Asselus Aquaticus in this dendrogram if you follow its taxonomy -
-Malacostraca <- parse_tax_data(Malacostraca, class_cols = 1:7) %>%
+Malacostraca_dendrogram <- parse_tax_data(Malacostraca, class_cols = 1:7) %>%
   filter_taxa(taxon_names != "") %>%
   heat_tree(node_label = taxon_names,
             node_color = n_obs,
             node_size = n_obs,
             layout = "da")
 
-# Asselus Aquaticus taxonomy ---------------------------------------------------
+# dendrogram of order isopoda ---------------------------------------------------
+Isopoda_dendrogram <- parse_tax_data(Isopoda, class_cols = 1:7) %>%
+  filter_taxa(taxon_names != "") %>%
+  heat_tree(node_label = taxon_names,
+            node_color = n_obs,
+            node_size = n_obs,
+            layout = "da")
+
+# Asselus Aquaticus species taxonomy ---------------------------------------------------
 AsellusAquaticus_dendrogram <- parse_tax_data(taxonomy_AA, class_cols = 1:7) %>%
   filter_taxa(taxon_names != "") %>%
   heat_tree(node_label = taxon_names)
@@ -50,7 +61,9 @@ AsellusAquaticus_dendrogram <- parse_tax_data(taxonomy_AA, class_cols = 1:7) %>%
 # Asselus Aquaticus data -------------------------------------------------------
 
 AsellusAquaticus <- STOWA %>%
-  filter(species == "Asellus aquaticus") %>% 
+  filter(species == "Asellus aquaticus") %>%
+  filter(countryCode == "NL") %>%
+  filter(year > 2000 & year < 2010) %>%
   select(species, decimalLatitude, decimalLongitude, eventDate, year)
 
 write.csv(AsellusAquaticus, "Asellus Aquaticus.csv")
@@ -92,6 +105,14 @@ organisms_map <- ggplot(binded, aes(long, lat, group = group)) +
 
 # graphing Asellus Aquaticus population ----------------------------------------
 
-AsellusAquaticus %>% 
-  group_by(year) %>% 
-  mutate(count = count(species))
+AsellusAquaticus <- AsellusAquaticus %>%
+  group_by(year) %>%
+  mutate(count = length(species)) %>%
+  mutate(year = as.integer(year)) %>%
+  ungroup()
+
+AsellusAquaticus %>%
+  ggplot() +
+  geom_point(aes(year, count))
+
+
