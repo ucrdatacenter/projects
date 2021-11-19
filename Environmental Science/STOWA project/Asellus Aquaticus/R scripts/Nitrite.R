@@ -19,6 +19,6 @@ write.csv(Nitrite, "Nitrite.csv")
 
 # graphing ---------------------------------------------------------------------
 
-Nitrogen %>%
+Nitrite %>%
   ggplot()+
-  geom_point(aes(Year, Mean))
+  geom_point(aes(Year, Mean, color = WaterbaseID))
