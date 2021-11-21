@@ -19,4 +19,7 @@
    
 
 ### RESEARCH FOCUS
-   Distribution of Asellus aquaticus in relation to Nitrite pollution
+   Distribution of Asellus aquaticus in relation to Nitrite 
+   
+### Literature
+   Alonso, A., & Camargo, J. A. (2006). Toxicity of nitrite to three species of freshwater invertebrates. Environmental Toxicology: An International Journal, 21(1), 90-94.
