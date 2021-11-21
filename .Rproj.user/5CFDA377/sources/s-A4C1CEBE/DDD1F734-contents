@@ -22,3 +22,17 @@ write.csv(Nitrite, "Nitrite.csv")
 Nitrite %>%
   ggplot()+
   geom_point(aes(Year, Mean, color = WaterbaseID))
+
+
+# identifying rivers -----------------------------------------------------------
+
+WaterStations <- read_csv("Waterbase Rivers/Waterbase_rivers_v14_Stations.csv")
+
+NitriteRivers <- left_join(Nitrite, WaterStations, by = "WaterbaseID") %>%
+  select(RiverName, Year, Mean, Unit_Nutrients) %>%
+  rename(river = RiverName,
+         year = Year,
+         mean = Mean,
+         unit = Unit_Nutrients)
+
+write.csv(NitriteRivers, "NitriteRivers.csv")
