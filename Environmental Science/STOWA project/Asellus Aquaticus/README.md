@@ -6,7 +6,7 @@
   
 
 ### DATA
-  The data on the occurrences of Asellus Aquaticus for this project are retrieved from the STOWA dataset from gbif.org. Regarding the Nitrite pollution the data are obtained from   European Environmetnal Agency, eea.europa.eu. Both datasets are adjusted and uploaded in the data file of Asellus Aquaticus project.
+  The data on the occurrences of Asellus Aquaticus for this project are retrieved from the STOWA dataset from gbif.org. Regarding the Nitrite pollution the data are obtained from   European Environmetnal Agency, eea.europa.eu. Both datasets are adjusted and uploaded in a csv file to the data folder in Asellus Aquaticus project.
 
 ### SKILLS
    While completing this project a student can develop multiple R skills as well as practice performing research with previously gathered data from an external source.
