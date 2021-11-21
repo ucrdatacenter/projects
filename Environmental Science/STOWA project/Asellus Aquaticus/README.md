@@ -10,6 +10,13 @@
   gbirf.org
 
 ### SKILLS
+   importing datasets
+   simple cleaning of data
+   creating simple R function
+   visualizing observations on map (perhaps including simpel QGIS visualization)
+   visualizing R graphs with ggplot
+   performing statistical test
+   
 
 ### RESEARCH FOCUS
-
+   Distribution of Asellus aquaticus in relation to Nitrite pollution
