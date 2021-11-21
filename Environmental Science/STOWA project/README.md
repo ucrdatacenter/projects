@@ -8,4 +8,4 @@
   The data is retrieved from publicly available soruce gbif.org.
   
   The Waterbase Rivers dataset is sourced from European Environmental Agency (https://www.eea.europa.eu/publications/92-9167-001-4/page014.html) and contains information 
-  about the nutrientious and hazardous substances content of European rivers. The temporal scale of the dataset is ranging from 1970s to 2012. 
+  about the nutritious and hazardous substances content of European rivers. The temporal scale of the dataset is ranging from 1970s to 2012. 
