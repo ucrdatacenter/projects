@@ -6,16 +6,19 @@
   
 
 ### DATA
-  eea.europa.eu
-  gbirf.org
+  The data on the occurrences of Asellus Aquaticus for this project are retrieved from the STOWA dataset from gbif.org. Regarding the Nitrite pollution the data are obtained from   European Environmetnal Agency, eea.europa.eu. Both datasets are adjusted and uploaded in the data file of Asellus Aquaticus project.
 
 ### SKILLS
-   importing datasets
-   simple cleaning of data
-   creating simple R function
-   visualizing observations on map (perhaps including simpel QGIS visualization)
-   visualizing R graphs with ggplot
-   performing statistical test
+   While completing this project a student can develop multiple R skills as well as practice performing research with previously gathered data from an external source.
+  
+  Skills practice:
+   
+   
+         - filtering, adjusting and cleaning data to obtain desired information only
+         - creating simple R functions
+         - visualizing observations on map (perhaps including simpel QGIS visualization)
+         - visualizing R graphs with ggplot
+         - performing statistical test
    
 
 ### RESEARCH FOCUS
