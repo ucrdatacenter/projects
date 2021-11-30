@@ -1,5 +1,5 @@
 # Alternative 
-  Distribution of organisms in relation to Nitrogen pollution in the Netherlands
+  Distribution of organisms in relation to Nitrogen deposition in the Netherlands
   
   ## DATA
   The organisms occurrences can be directly downloaded in a csv file from gbif.com.
