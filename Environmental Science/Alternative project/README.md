@@ -2,6 +2,10 @@
   Distribution of organisms in relation to Nitrogen deposition in the Netherlands
   
   
+  ![Eutrophication](https://user-images.githubusercontent.com/84587448/144092109-7298977c-a6af-4146-9dde-54d51b3741b4.jpg)
+
+  
+  
   Nitrogen deposition is one of the main causes of current biodiversity decline (Payne, et a., 2013). This is mainly due to highly intesified agricultural practices which are very common, here, in the Netherlands. Therefore, environmentalists and ecologists have had numerous debates in recent years on how to analyse and tackle this biodiversity decline due to Nitrogen. Which species are harmed and might some even benefit? As an ecologist, you need to know what is the species distribution and how it correlates with past, current and future Nitrogen deposition to be able to draw the right conclusion and action plans for species protection. In this assignment you will work with external source of species occurences, will correlate these to Nitrogen deposition in the Netherlands and perform statistical test to see whether the Nitrogen deposition has a significant impact on the spieces distribution.
   
   
