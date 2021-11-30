@@ -19,6 +19,7 @@ Asellus_2018 <- Asellus_2018 %>%
 
 write.csv(Asellus_2018, "Asellus_2018/Asellus_2018.csv")
 
+# importing Asellus as a shapefile ---------------------------------------------
 Asellus_2018 <- readOGR("Asellus_2018/Asellus_2018_shp", "Asellus")
 plot(Asellus_2018)
 
@@ -29,23 +30,14 @@ points(Asellus_2018)
 # merging datasets -------------------------------------------------------------
 Asellus_2018$Nitrogen_2018 <- extract(Nitrogen_2018, Asellus_2018)
 
-Natura2000 <- readOGR("Natura2000", "Natura2000_end2018_epsg3035")
-Natura2000 <- spTransform(Natura2000, proj4string(Nitrogen_2018))
-
-Nmasked <- mask(Nitrogen_2018, Natura2000)
-plot(Nmasked)
-plot(Natura2000, add=TRUE)
-
-Asellus_2018$Natura2000 <- extract(Nmasked, Asellus_2018)
-Asellus_2018$Natura2000 <- ifelse(is.na(Asellus_2018$Natura2000), 0, 1)
-
 dat <- as.data.frame(Asellus_2018)
 table(complete.cases(dat))
 dat <- na.omit(dat)
-head(dat)
 
-write.table(dat, file="new_asellus_data", append=FALSE, sep= ",", row.names = FALSE, col.names=TRUE)
+# exporting asellus data -------------------------------------------------------
+write.table(dat, file = "new_asellus_data", append = FALSE, sep = ",", row.names = FALSE, col.names = TRUE)
 
+# potting a boxplot with average Nitrogen deposition per species occurrence
 boxplot(Nitrogen_2018~ species,
         data = dat,
         main = "Average Nitrogen deposition per species occurrence",
@@ -54,14 +46,7 @@ boxplot(Nitrogen_2018~ species,
         col = "orange",
         border = "brown")
 
-boxplot(Nitrogen_2018 ~ Natura2000,
-        data = dat,
-        main = "Average Nitrogen deposition in Natura 2000 sites vs in other sites",
-        xlab = "Natura 2000",
-        ylab = "Nitrogen deposition",
-        col = "orange",
-        border = "brown")
-
-N2000Y <- subset(dat, Natura2000 == 1)
-N2000N <- subset(dat, Natura2000 == 0)
-t.test(N2000Y$Nitrogen, N2000N$Nitrogen)
+# performing a t test ----------------------------------------------------------
+Nhigh <- subset(dat, Nitrogen_2018 > 1000)
+Nlow <- subset(dat, Nitrogen_2018 < 1000)
+t.test(Nhigh$Nitrogen_2018, Nlow$Nitrogen_2018)
