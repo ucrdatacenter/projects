@@ -2,6 +2,8 @@
   Distribution of organisms in relation to Nitrogen pollution in the Netherlands
   
   ## DATA
+  The organisms occurrences can be directly downloaded in a csv file from gbif.com.
+  The nitrogen deposition in the Netherlands can be downloaded from RIVM website: https://www.rivm.nl/gcn-gdn-kaarten/depositiekaarten/cijfers-achter-depositiekaarten/gdn-depositiebestanden-achterliggende-jaren. 
   
   ## SKILLS
   While completing this project a student can develop multiple R skills as well as practice performing research with previously gathered data from an external source.
@@ -12,8 +14,8 @@
           -  Obtaining and importing data from an online source to R
           -  Filtering and adjusting data to reach a set of desired information only
           -  Visualization of species occurences on a map (perhaps inclusion of map software QGIS)
-          -  Visualizationof graphs in R
-          -  performing statistical test
+          -  Visualization of graphs in R
+          -  Performing statistical test
   
  
   ## RESEARCH FOCUS
