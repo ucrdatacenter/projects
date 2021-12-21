@@ -46,6 +46,18 @@ boxplot(Nitrogen_2018~ species,
         col = "orange",
         border = "brown")
 
+# plotting barchart
+ggplot(dat) +
+  geom_bar(aes(Nitrogen_2018)) +
+  labs(x = "Nitrogen deposition",
+       y = "Species")
+
+ggplot(dat) +
+  geom_freqpoly(aes(Nitrogen_2018)) +
+  labs(title = "Species occurences per Nitrogen deposition",
+       x = "Nitrogen deposition",
+       y = "Species")
+
 # performing a t test ----------------------------------------------------------
 Nhigh <- subset(dat, Nitrogen_2018 > 1000)
 Nlow <- subset(dat, Nitrogen_2018 < 1000)
