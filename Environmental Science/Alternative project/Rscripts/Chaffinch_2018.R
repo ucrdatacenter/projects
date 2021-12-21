@@ -1,0 +1,105 @@
+# libraries --------------------------------------------------------------------
+library(tidyverse)
+library(sp)
+library(raster)
+library(rgdal)
+library(readr)
+
+# Nitrogen data ----------------------------------------------------------------
+Nitrogen_2018 <- raster("RIVM_Nitrogen/depo_ntot_2018.asc")
+plot(Nitrogen_2018)
+
+# Asellus data -----------------------------------------------------------------
+Chaffinch_2018 <- read_delim("Chaffinch_2018.csv",
+                             delim = "\t", escape_double = FALSE,
+                             trim_ws = TRUE)
+Chaffinch_2018 <- Chaffinch_2018 %>%
+  dplyr::select(species, decimalLongitude, decimalLatitude)
+
+Chaffinch_2018 <- Chaffinch_2018 %>%
+  rename(longitude = decimalLongitude,
+         latitude = decimalLatitude)
+
+write.csv(Chaffinch_2018, "Chaffinch_2018/Chaffinch_2018.csv")
+
+# importing Asellus as a shapefile ---------------------------------------------
+Chaffinch_2018 <- readOGR("Chaffinch_2018", "Chaffinch_2018")
+plot(Chaffinch_2018)
+
+proj4string(Nitrogen_2018) <- CRS("+init=epsg:28992")
+
+#wkt <- 'PROJCS["Amersfoort / RD New",
+#      GEOGCS["Amersfoort",
+#            DATUM["Amersfoort",
+#                 SPHEROID["Bessel 1841",6377397.155,299.1528128,
+#                         AUTHORITY["EPSG","7004"]],
+#               TOWGS84[565.417,50.3319,465.552,-0.398957,0.343988,-1.8774,4.0725],
+#              AUTHORITY["EPSG","6289"]],
+#       PRIMEM["Greenwich",0,
+#             AUTHORITY["EPSG","8901"]],
+#     UNIT["degree",0.0174532925199433,
+#         AUTHORITY["EPSG","9122"]],
+#   AUTHORITY["EPSG","4289"]],
+#PROJECTION["Oblique_Stereographic"],
+#PARAMETER["latitude_of_origin",52.15616055555555],
+#PARAMETER["central_meridian",5.38763888888889],
+#PARAMETER["scale_factor",0.9999079],
+#PARAMETER["false_easting",155000],
+#PARAMETER["false_northing",463000],
+#UNIT["metre",1,
+#    AUTHORITY["EPSG","9001"]],
+#AXIS["X",EAST],
+#AXIS["Y",NORTH],
+#AUTHORITY["EPSG","28992"]]'
+
+#proj4string(Nitrogen_2018) <- CRS(SRS_string = wkt)
+
+
+Chaffinch_2018 <- spTransform(Chaffinch_2018, proj4string(Nitrogen_2018))
+
+# checking whether both files are in the same coordinate system
+
+proj4string(Chaffinch_2018)
+proj4string(Nitrogen_2018)
+
+# Plotting nitrogen and asellus ------------------------------------------------
+plot(Nitrogen_2018)
+points(Chaffinch_2018)
+
+# merging datasets -------------------------------------------------------------
+Chaffinch_2018$Nitrogen_2018 <- extract(Nitrogen_2018, Chaffinch_2018)
+
+# writing a data table with Asellus ocurrences and Nitrogen levels
+data <- as.data.frame(Chaffinch_2018) %>%
+  na.omit()
+
+# exporting asellus data -------------------------------------------------------
+write.table(data, file = "new_chaffinch_data", append = FALSE, sep = ",", row.names = FALSE, col.names = TRUE)
+
+# potting a boxplot with average Nitrogen deposition per species occurrence
+boxplot(Nitrogen_2018 ~ species,
+        data = data,
+        main = "Average Nitrogen deposition per species occurrence",
+        xlab = "Species",
+        ylab = "Nitrogen deposition",
+        col = "orange",
+        border = "brown")
+
+# plotting barchart
+ggplot(data) +
+  geom_bar(aes(Nitrogen_2018)) +
+  labs(x = "Nitrogen deposition",
+       y = "Species")
+
+ggplot(data) +
+  geom_freqpoly(aes(Nitrogen_2018)) +
+  labs(title = "Species occurences per Nitrogen deposition",
+       x = "Nitrogen deposition",
+       y = "Species")
+
+# performing a t test ----------------------------------------------------------
+Nhigh <- subset(data, Nitrogen_2018 > 1000 & Nitrogen_2018 < 2000)
+Nlow <- subset(data, Nitrogen_2018 < 1000 & Nitrogen_2018 > 2000)
+t.test(Nhigh$species, Nlow$species)
+
+

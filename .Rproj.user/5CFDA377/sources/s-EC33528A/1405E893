@@ -1,9 +1,9 @@
 {
     "id": "1405E893",
-    "path": "~/GitHub/projects/Environmental Science/Alternative project/Rscripts/Alternative.R",
-    "project_path": "Environmental Science/Alternative project/Rscripts/Alternative.R",
+    "path": "~/GitHub/projects/Environmental Science/Alternative project/Rscripts/Asellus_2018.R",
+    "project_path": "Environmental Science/Alternative project/Rscripts/Asellus_2018.R",
     "type": "r_source",
-    "hash": "0",
+    "hash": "1294021896",
     "contents": "",
     "dirty": false,
     "created": 1638256491897.0,
@@ -17,11 +17,11 @@
         "scrollLine": "30"
     },
     "folds": "",
-    "lastKnownWriteTime": 1640089641,
+    "lastKnownWriteTime": 1640105202,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1640089641352,
+    "last_content_update": 1640105202044,
     "read_only": false,
     "read_only_alternatives": []
 }
