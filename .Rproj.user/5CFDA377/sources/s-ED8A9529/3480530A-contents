@@ -100,6 +100,7 @@ ggplot(data) +
 # performing a t test ----------------------------------------------------------
 Nhigh <- subset(data, Nitrogen_2018 > 1000 & Nitrogen_2018 < 2000)
 Nlow <- subset(data, Nitrogen_2018 < 1000 & Nitrogen_2018 > 2000)
+
 t.test(Nhigh$species, Nlow$species)
 
 
