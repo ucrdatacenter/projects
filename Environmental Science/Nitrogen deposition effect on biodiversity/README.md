@@ -28,7 +28,7 @@
   
  
   ## RESEARCH FOCUS
-  Correlation of an organism occurences and Nitrogen deposition levels. 
+  Correlation of organism occurences and Nitrogen deposition levels. 
   
   ## Literature
   Hernández, D. L., Vallano, D. M., Zavaleta, E. S., Tzankova, Z., Pasari, J. R., Weiss, S., ... & Morozumi, C. (2016). Nitrogen pollution is linked to US listed species declines. BioScience, 66(3), 213-222.
