@@ -1,4 +1,4 @@
-# Alternative 
+# Nitrogen deposition effect on biodiversity
   Distribution of organisms in relation to Nitrogen deposition in the Netherlands
   
   
@@ -6,7 +6,7 @@
 
   
   
-  Nitrogen deposition is one of the main causes of current biodiversity decline (Payne, et a., 2013). This is mainly due to highly intesified agricultural practices which are very common, here, in the Netherlands. Therefore, environmentalists and ecologists have had numerous debates in recent years on how to analyse and tackle this biodiversity decline due to Nitrogen. Which species are harmed and might some even benefit? As an ecologist, you need to know what is the species distribution and how it correlates with past, current and future Nitrogen deposition to be able to draw the right conclusion and action plans for species protection. In this assignment you will work with external source of species occurences, will correlate these to Nitrogen deposition in the Netherlands and perform statistical test to see whether the Nitrogen deposition has a significant impact on the spieces distribution.
+  Nitrogen deposition is one of the main causes of current biodiversity decline (Payne, et a., 2013). This is mainly due to highly intesified agricultural practices which are very common, here, in the Netherlands. Therefore, environmentalists and ecologists have had numerous debates in recent years on how to analyse and tackle this biodiversity decline due to Nitrogen. Which species are harmed and might some even benefit? As an ecologist, you need to know what is the species distribution and how it correlates with past, current and future Nitrogen deposition to be able to draw the right conclusion and action plans for species protection. In this assignment you will work with external source of species occurences, will correlate these to Nitrogen deposition in the Netherlands and perform statistical test to see whether there is a correlation between Nitrogen deposition and the occurences of a chosen species.
   
   
   ## DATA
@@ -28,7 +28,7 @@
   
  
   ## RESEARCH FOCUS
-  Distribution of organisms in relation to Nitrogen pollution
+  Correlation of an organism occurences and Nitrogen deposition levels. 
   
   ## Literature
   Hernández, D. L., Vallano, D. M., Zavaleta, E. S., Tzankova, Z., Pasari, J. R., Weiss, S., ... & Morozumi, C. (2016). Nitrogen pollution is linked to US listed species declines. BioScience, 66(3), 213-222.
