@@ -7,6 +7,7 @@
 # LIBRARIES --------------------------------------------------------------------
 ## the list of all the libraries that you need for completing the assignment
 ## every section has a comment which says which library you are using
+
 library(tidyverse)
 library(sp)
 library(raster)
@@ -52,7 +53,7 @@ proj4string(Nitrogen_2018)
 plot(Nitrogen_2018)
 points(Waterlouse_2018)
 
-# MERGING DATASETS -------------------------------------------------------------
+## merging datasets
 ## library needed: library(raster)
 Waterlouse_2018$Nitrogen_2018 <- extract(Nitrogen_2018, Waterlouse_2018)
 
@@ -60,7 +61,7 @@ Waterlouse_2018$Nitrogen_2018 <- extract(Nitrogen_2018, Waterlouse_2018)
 data <- as.data.frame(Waterlouse_2018) %>%
   na.omit()
 
-# BOXPLOT ----------------------------------------------------------------------
+# BOXPLOT
 boxplot(Nitrogen_2018 ~ species,
         data = data,
         main = "Average Nitrogen deposition per species occurrence",
@@ -69,20 +70,20 @@ boxplot(Nitrogen_2018 ~ species,
         col = "orange",
         border = "brown")
 
-# BARCHART ---------------------------------------------------------------------
+# BARCHART
 ggplot(data) +
   geom_bar(aes(Nitrogen_2018)) +
   labs(x = "Nitrogen deposition",
        y = "Waterlouse (Asellus Aquaticus)")
 
-# FREQUENCY POLYGON ------------------------------------------------------------
+# FREQUENCY POLYGON
 f <- ggplot(data) +
   geom_freqpoly(aes(Nitrogen_2018)) +
   labs(title = "Species occurences per Nitrogen deposition",
        x = "Nitrogen deposition (mol/(ha.year))",
        y = "Waterlouse (Asellus Aquaticus) (n)")
 
-# CORRELATION TEST -------------------------------------------------------------
+# ANALYSIS ---------------------------------------------------------------------
 ## writing a function which extracts values from frequency polygon
 get_fpoly <- function(p) {
   d <- ggplot_build(p)$data[[1]]
