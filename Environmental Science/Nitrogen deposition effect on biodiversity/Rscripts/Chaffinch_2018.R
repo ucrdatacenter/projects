@@ -18,27 +18,27 @@ library(readr)
 # DATA IMPORT ------------------------------------------------------------------
 ## libraries needed: library(sp) and library(raster)
 ## importing the data on Nitrogen deposition levels
-Nitrogen_2018 <- raster("RIVM_Nitrogen/depo_ntot_2018.asc")
-## lets see how does Nitrogen deposition map looks likE
+Nitrogen_2018 <- raster("Data/Nitrogen_2018/depo_ntot_2018.asc")
+## lets see how does Nitrogen deposition map looks like
 plot(Nitrogen_2018)
 
 ## libraries needed: library(readr)
 ## importing the data on chaffinch (Fringilla coelebs)
-Chaffinch_2018 <- read_delim("Chaffinch_2018.csv",
-                          delim = "\t", escape_double = FALSE,
-                          trim_ws = TRUE)
+Chaffinch_2018 <- read_delim("Data/Chaffinch_2018/0067140-210914110416597.csv",
+                             delim = "\t", escape_double = FALSE,
+                             trim_ws = TRUE)
 Chaffinch_2018 <- Chaffinch_2018 %>%
   dplyr::select(species, decimalLongitude, decimalLatitude) %>% # in this case you can notice that we wrote down dplyr::select instead of just typing command select(). This is because the command select() is in two our libraries. Therefore, we wanted to specify that this select is from dplyr package which is within tidyverse.
   rename(latitude = decimalLatitude,
          longitude = decimalLongitude)
 
 ## writing a csv file Waterlouse_2018.csv into the folder Waterlouse_2018
-write.csv(Chaffinch_2018, "Chaffinch_2018/Chaffinch_2018.csv")
+write.csv(Chaffinch_2018, "Data/Chaffinch_2018/Chaffinch_2018.csv")
 
 ## libraries needed: library(rgdal)
 ## importing data on chaffinch as a shapefile from the folder
 ## Chaffinch_2018_shp in the folder Chaffinch_2018
-Chaffinch_2018 <- readOGR("Chaffinch_2018/Chaffinch_2018_shp", "Chaffinch_2018")
+Chaffinch_2018 <- readOGR("Data/Chaffinch_2018/Chaffinch_2018_shp", "Chaffinch_2018")
 plot(Chaffinch_2018)
 
 # ADJUSTING COORDINATE SYSTEMS -------------------------------------------------
