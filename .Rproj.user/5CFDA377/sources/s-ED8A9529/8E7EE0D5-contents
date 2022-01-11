@@ -1,5 +1,5 @@
 
-# CHAFFINCH
+# WATERLOUSE
 
 ## Before starting with the assignment, do not forget that you need to install
 ## the libraries you have not used before with the code install.packages(...)
@@ -7,8 +7,6 @@
 # LIBRARIES --------------------------------------------------------------------
 ## the list of all the libraries that you need for completing the assignment
 ## every section has a comment which says which library you are using
-
-# libraries --------------------------------------------------------------------
 library(tidyverse)
 library(sp)
 library(raster)
@@ -19,55 +17,54 @@ library(readr)
 ## libraries needed: library(sp) and library(raster)
 ## importing the data on Nitrogen deposition levels
 Nitrogen_2018 <- raster("RIVM_Nitrogen/depo_ntot_2018.asc")
-## lets see how does Nitrogen deposition map looks likE
+## lets see how does Nitrogen deposition map looks like
 plot(Nitrogen_2018)
 
 ## libraries needed: library(readr)
-## importing the data on chaffinch (Fringilla coelebs)
-Chaffinch_2018 <- read_delim("Chaffinch_2018.csv",
-                          delim = "\t", escape_double = FALSE,
-                          trim_ws = TRUE)
-Chaffinch_2018 <- Chaffinch_2018 %>%
+## importing the data on waterlouse (Asellus Aquaticus)
+Waterlouse_2018 <- read_delim("Asellus_2018/0067140-210914110416597.csv",
+                                       delim = "\t", escape_double = FALSE,
+                                       trim_ws = TRUE)
+Waterlouse_2018 <- Waterlouse_2018 %>%
   dplyr::select(species, decimalLongitude, decimalLatitude) %>% # in this case you can notice that we wrote down dplyr::select instead of just typing command select(). This is because the command select() is in two our libraries. Therefore, we wanted to specify that this select is from dplyr package which is within tidyverse.
   rename(latitude = decimalLatitude,
          longitude = decimalLongitude)
 
 ## writing a csv file Waterlouse_2018.csv into the folder Waterlouse_2018
-write.csv(Chaffinch_2018, "Chaffinch_2018/Chaffinch_2018.csv")
+write.csv(Waterlouse_2018, "Waterlouse_2018/Waterlouse_2018.csv")
 
 ## libraries needed: library(rgdal)
-## importing data on chaffinch as a shapefile from the folder
-## Chaffinch_2018_shp in the folder Chaffinch_2018
-Chaffinch_2018 <- readOGR("Chaffinch_2018/Chaffinch_2018_shp", "Chaffinch_2018")
-plot(Chaffinch_2018)
+## importing data on Waterlouse as a shapefile from the folder
+## Waterlouse_2018_shp in the folder Waterlouse_2018
+Waterlouse_2018 <- readOGR("Waterlouse_2018/Waterlouse_2018_shp_qgis", "Waterlouse_2018")
+plot(Waterlouse_2018)
 
 # ADJUSTING COORDINATE SYSTEMS -------------------------------------------------
 ## libraries needed: library(sp)
 proj4string(Nitrogen_2018) <- CRS("+init=epsg:28992")
+Waterlouse_2018 <- spTransform(Waterlouse_2018, proj4string(Nitrogen_2018))
 
-Chaffinch_2018 <- spTransform(Chaffinch_2018, proj4string(Nitrogen_2018))
-
-# checking whether both files are in the same coordinate system
-proj4string(Chaffinch_2018)
+## checking whether both files are in the same coordinate system
+proj4string(Waterlouse_2018)
 proj4string(Nitrogen_2018)
 
 # PLOTTING ---------------------------------------------------------------------
 plot(Nitrogen_2018)
-points(Chaffinch_2018)
+points(Waterlouse_2018)
 
 # MERGING DATASETS -------------------------------------------------------------
 ## library needed: library(raster)
-Chaffinch_2018$Nitrogen_2018 <- extract(Nitrogen_2018, Chaffinch_2018)
+Waterlouse_2018$Nitrogen_2018 <- extract(Nitrogen_2018, Waterlouse_2018)
 
 ## writing a data table with waterlouse occurrences and Nitrogen deposition levels
-data <- as.data.frame(Chaffinch_2018) %>%
+data <- as.data.frame(Waterlouse_2018) %>%
   na.omit()
 
 # BOXPLOT ----------------------------------------------------------------------
 boxplot(Nitrogen_2018 ~ species,
         data = data,
         main = "Average Nitrogen deposition per species occurrence",
-        xlab = "Chaffinch (Fringilla coelebs)",
+        xlab = "Waterlouse (Asellus Aquaticus)",
         ylab = "Nitrogen deposition (mol/(ha.year))",
         col = "orange",
         border = "brown")
@@ -75,16 +72,15 @@ boxplot(Nitrogen_2018 ~ species,
 # BARCHART ---------------------------------------------------------------------
 ggplot(data) +
   geom_bar(aes(Nitrogen_2018)) +
-  labs(x = "Nitrogen deposition (mol/(ha.year))",
-       y = "Chaffinch (Fringilla coelebs) (n)")
+  labs(x = "Nitrogen deposition",
+       y = "Waterlouse (Asellus Aquaticus)")
 
 # FREQUENCY POLYGON ------------------------------------------------------------
 f <- ggplot(data) +
   geom_freqpoly(aes(Nitrogen_2018)) +
   labs(title = "Species occurences per Nitrogen deposition",
-       x = "Nitrogen deposition (mol/(ha.year))",
-       y = "Chaffinch (Fringilla coelebs) (n)")
-
+        x = "Nitrogen deposition (mol/(ha.year))",
+        y = "Waterlouse (Asellus Aquaticus) (n)")
 
 # CORRELATION TEST -------------------------------------------------------------
 ## writing a function which extracts values from frequency polygon
@@ -101,5 +97,4 @@ result <-  cor.test(x, y, method = "pearson")
 
 ## printing the result
 print(result)
-
 
