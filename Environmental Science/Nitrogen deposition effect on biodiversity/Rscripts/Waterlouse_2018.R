@@ -26,6 +26,8 @@ plot(Nitrogen_2018)
 Waterlouse_2018 <- read_delim("Data/Waterlouse_2018/0067140-210914110416597.csv",
                               delim = "\t", escape_double = FALSE,
                               trim_ws = TRUE)
+
+# DATA TIDYING -----------------------------------------------------------------
 Waterlouse_2018 <- Waterlouse_2018 %>%
   dplyr::select(species, decimalLongitude, decimalLatitude) %>% # in this case you can notice that we wrote down dplyr::select instead of just typing command select(). This is because the command select() is in two our libraries. Therefore, we wanted to specify that this select is from dplyr package which is within tidyverse.
   rename(latitude = decimalLatitude,
@@ -40,7 +42,7 @@ write.csv(Waterlouse_2018, "Data/Waterlouse_2018/Waterlouse_2018.csv")
 Waterlouse_2018 <- readOGR("Data/Waterlouse_2018/Waterlouse_2018_shp", "Waterlouse_2018")
 plot(Waterlouse_2018)
 
-# ADJUSTING COORDINATE SYSTEMS -------------------------------------------------
+## adjusting coordinate systems
 ## libraries needed: library(sp)
 proj4string(Nitrogen_2018) <- CRS("+init=epsg:28992")
 Waterlouse_2018 <- spTransform(Waterlouse_2018, proj4string(Nitrogen_2018))
