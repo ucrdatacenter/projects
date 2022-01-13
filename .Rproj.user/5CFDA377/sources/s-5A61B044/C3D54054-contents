@@ -1,0 +1,583 @@
+
+
+# Install packages needed. A pop up may appear with Secure CRAN mirrors, pick Germany (Munster) and click ok. This process only needs to be done one time (!) on each computer.
+
+install.packages("raster")
+
+install.packages("rgdal")
+
+install.packages("ncdf4")
+
+# if ncdf4 does not work, try ncdf instead.
+
+# Load the packages so they actually work. This process has to be done each time you open R again.
+
+library(raster)
+
+library(rgdal)
+
+library(ncdf4)
+
+# If you get an error message saying something along the following lines. You can ignore it for now
+
+# Warning messages:
+# 1: package ?raster? was built under R version 3.4.4
+
+# Navigate to the root folder of your project. note, if you did not create the root project folder directly in the M folder, but in a sub folder, adjust that in the code! also note the direction of // . If you are using R Studio, you can also set the working directory by clicking Session (toolbar in the top), set working directory, choose directory, and navigate to the folder that contains your data.
+setwd("C://Users/PC/Desktop/Wildlife Conservation Assignments/W3 Species Distribution Modelling/") # update to your own working directory!
+
+# load the species occurrence file called orange tip (note! If you gave your file a different name, then also change that in the code) Here, we load it from the "butteflies" folder within the "data" folder!
+
+OT <- read.csv("Data/butterflies/Final data orange tip.csv", sep=",")
+
+# show the first 6 lines of the data, use ?tail? instead of ?head? to show the last 6 or just run the name of the object (OT) to show all the data
+
+head(OT)
+
+# load the shapefile of the Netherlands (meaning a map with the outline of The Netherlands) you just downloaded (called NLD_adm0) and plot it in the colour red (or whatever you wish) and add the species occurrences of the orange tip on top of it. Adjust the name of the folder and files as necessary in the code. You may have stored it somewhere else or named it something else.
+
+NL <- readOGR("Data/gadm/NLD_adm",  "NLD_adm0")
+
+plot(NL, col = "red")
+
+points(OT$Longitude, OT$Latitude)
+
+# read in the bio1 raster file and plot it
+
+bio1 <- raster("Data/worldclim/wc2.1_5m_bio/wc2.1_5m_bio_1.tif")
+
+plot(bio1)
+
+# set the extent of the area (here we call it e) by specifying the coordinates of the corners, crop (cut) the map of the world (here we just use the bio1 raster) to fit the extent (e) and save it (we called it bio1_NL), plot it, add the occurrence data (from the file OT) on top of it
+
+e <- c(3, 7.5, 50.5, 54)
+
+bio1_NL <- crop(bio1,e)
+
+plot(bio1_NL)
+
+points(OT$Longitude, OT$Latitude)
+
+
+# exports the raster bio1_NL in ascii format and names it bio1_NL.asc
+
+writeRaster(bio1_NL, "Data/worldclim/bioNL/bio1_NL.asc", format = "ascii")
+
+paste0("Data/worldclim/wc2.1_5m_bio/", # The folder where the files are stored
+       "wc2.1_5m_bio_", # The first shared part of the file names
+       1:19, # bioclim layers 1 - 19
+       ".tif") # the last part: file extension
+
+s <- stack(paste0("data/worldclim/wc2.1_5m_bio/", # The folder where the files are stored
+                  "wc2.1_5m_bio_", # The first part of the file names
+                  1:19, # bioclim layers 1 - 19
+                  ".tif")) # the file extension
+
+names(s)
+
+s.crop <- crop(s, e)
+
+names(s.crop) <- paste0("bio",1:19)
+
+writeRaster(s.crop, paste0("data/worldclim/bioNL/", names(s.crop)), bylayer=TRUE, format="ascii", overwrite=TRUE)
+
+# To check if it worked we can import a newly created raster file and plot it.
+
+bio12 <- raster("data/worldclim/bioNL/bio12.asc")
+
+plot(bio12)
+
+# Also check the resolution (cell size) and the extent, this should be the same as for bio1 (which you may have called bio1_NL)
+
+res(bio12)
+
+extent(bio12)
+
+install.packages("spThin") # do this only for the first time
+library(spThin)
+thin(OT,
+     lat.col = "Latitude", # the column name with latitude coordinates
+     long.col = "Longitude", # the column name with longitude coordinates
+     spec.col = "species", # the column name with species identifier
+     thin.par = 10,
+     reps = 100,
+     out.dir    = "Data/butterflies/",
+     out.base = "OTthinned")
+
+# import the variable ?range? from the states.nc brick in R, for every year (1166 years: from 850 to 2015) and call it Current, plot the year 2015. Note that you refer to the states.nc file in the proper (sub)folder!
+
+Current <- brick("Data/luh/states.nc", varname = "range")
+
+plot(Current[[1166]]) # this is the last layer in the brick: the layer that represents the year 2015
+
+# if you want to display e.g. year 2014 instead of 2015, then substitute 1166 for 1165. For the year 850 we would have used 1
+
+Current <- brick("Data/luh/states.nc", varname = "primf") # loading the brick of rasters
+Current <- crop(Current, e) # cropping to extent e defined above
+Current <- mean(Current[[1121:1151]]) # computing the mean of the years 1970-2000, thus positions 1121:1151
+Current <- resample(Current, s.crop) # resample the raster to the extent and resolution of the s.crop raster
+writeRaster(Current, "Data/luh/NL/primf.asc", format = "ascii")
+
+# Repeat this code for all variables: e.g. in the example above, change the word primf in the first and fourth line of the code to primn, secdf, etc. (all variables listed in table 2). It is good practice to do this yourself but if you are in lack of time, or if you are interested in seeing how this can be done automatically, here is a piece of code that does the same as the lines above for all of the layers in the brick:
+
+# Specify a vector of layers in the brick that we want to load, process and save
+layers <- c("primf","primn","secdf","secdn","urban","c3ann","c4ann","c3per","c4per","c3nfx","pastr","range","secmb","secma")
+# length(layers)
+for(i in layers)
+{
+  Current <- brick("Data/luh/states.nc", varname = i)
+  Current <- crop(Current, e)
+  Current <- mean(Current[[1121:1151]])
+  Current <- resample(Current, s.crop)
+  writeRaster(Current, paste0("Data/luh/NL/",i,".asc"), format = "ascii", overwrite=TRUE)
+}
+
+#import one of the newly made rasters (here pastr) and call it pasture, plot it, check if the resolution and the extent of the raster pasture match that of the raster bio12
+
+pasture <- raster("Data/luh/NL/pastr.asc")
+
+plot(pasture)
+
+res(pasture)
+
+res(bio12)
+
+extent(pasture)
+
+extent(bio12)
+
+# ORANGE TIP -------------------------------------------------------------------
+# import the thinned data you created earlier, and check the file
+
+OT_thin <- read.csv("Data/butterflies/OTthinned_thin1.csv", sep=",")
+head(OT_thin)
+
+# define the sample size (smp_size) of 70% (0-7) and set 70% of the occurrences from OT_thin aside in train_ind
+smp_size <- floor(0.7 * nrow(OT_thin))
+set.seed(123) # Set the 'seed' for the random number generator, so that this is reproducible (we now even control randomness!)
+train_ind <- sample(seq_len(nrow(OT_thin)), size = smp_size)
+
+# select the train_ind part from OT_thin and store it in train. Store the remainder (so 30%) in test
+
+train <- OT_thin[train_ind, ]
+test <- OT_thin[-train_ind, ]
+
+# Export the train and test datasets to csv files called OT_train and OT_test.
+
+write.csv(train, "Data/species occurrences/OT_train.csv", row.names=FALSE)
+write.csv(test, "Data/species occurrences/OT_test.csv", row.names=FALSE)
+
+
+# STUDDED BLUT -----------------------------------------------------------------
+# import the thinned data you created earlier, and check the file
+
+SB <- read.csv("Data/butterflies/Final data studded blue.csv", sep=",")
+
+thin(SB,
+     lat.col = "Latitude", # the column name with latitude coordinates
+     long.col = "Longitude", # the column name with longitude coordinates
+     spec.col = "species", # the column name with species identifier
+     thin.par = 10,
+     reps = 100,
+     out.dir    = "Data/butterflies/",
+     out.base = "SBthinned")
+
+SB_thin <- read.csv("Data/butterflies/SBthinned_thin1.csv", sep=",")
+head(SB_thin)
+
+# define the sample size (smp_size) of 70% (0-7) and set 70% of the occurrences from OT_thin aside in train_ind
+smp_size <- floor(0.7 * nrow(SB_thin))
+set.seed(123) # Set the 'seed' for the random number generator, so that this is reproducible (we now even control randomness!)
+train_ind <- sample(seq_len(nrow(SB_thin)), size = smp_size)
+
+# select the train_ind part from OT_thin and store it in train. Store the remainder (so 30%) in test
+
+train <- SB_thin[train_ind, ]
+test <- SB_thin[-train_ind, ]
+
+# Export the train and test datasets to csv files called OT_train and OT_test.
+
+write.csv(train, "Data/species occurrences/SB_train.csv", row.names=FALSE)
+write.csv(test, "Data/species occurrences/SB_test.csv", row.names=FALSE)
+
+
+# ORANGE TIP -------------------------------------------------------------------
+
+OT_train <- read.csv("Data/species occurrences/OT_train.csv", sep=",") # import the training dataset of the orange tip
+
+OT_train$species <- NULL #  delete the first column called species (if it is called Species [with a capital S] or something else, change this in the code)
+
+head(OT_train) # check how the dataset looks. You should just have a dataset with latitude and longitude showing.
+
+# import all variables with the extension .asc (so all environmental files). NOTE! You may have to change the pathname displayed in the code. Load the files into a stack called variables
+
+list_variables <- list.files(path="Data/input variables", pattern="*.asc", full.names=TRUE)
+
+variables <- stack(list_variables)
+
+# extract data for all variables at the coordinates from the species occurrence file (OT_train), and check the object
+
+variables_OT <- extract(variables, OT_train)
+head(variables_OT)
+
+# If you get a file with only NA at this point, it is likely that the order of your longitude, latitude columns is wrong in the OT_train file. The longitude column should show before your latitude column. To fix this you can use this piece of code: OT_train <- OT_train[,c(2,1)] (which swaps column 1 and 2 around).
+
+# perform correlation using the method kendall and save it in a file called cor_matrix_OT, export the file to the specified folder
+
+cor_matrix_OT <- cor(variables_OT, use="complete.obs", method="kendall")
+
+write.csv(cor_matrix_OT, "Output/cor_matrix_OT.csv")
+
+
+# import the raster file, plot the raster file
+
+OT_map <- raster("Output/Output OT2/Anthocharis_cardamines.asc")
+
+plot(OT_map)
+
+# import the csv file, select the cells that have a value larger than the threshold, plot the new map
+
+maxres_OT <- read.csv("Output/Output OT2/maxentResults.csv", sep=",")
+
+OT_map2 <- OT_map > maxres_OT $Maximum.training.sensitivity.plus.specificity.logistic.threshold
+
+#In case you get an error after this line of code. Go to check the maxentResults.csv file in Excel and check all the names in the headers. Somewhere around column BW (if you use Maxent version 3.3.3, it may be totally somewhere else if you use a different version) there should be a column named  Maximum training sensitivity plus specificity logistic threshold. Check the exact spelling and use of cases.
+
+plot(OT_map2)
+
+# import test occurrences, delete the species column, extract the frequency of test-occurrences predicted suitable and non-suitable
+
+OT_test <- read.csv("Data/species occurrences/OT_test.csv", sep=",")
+
+OT_test$species<-NULL
+
+testresult_OT <- extract(OT_map2, OT_test)
+
+# define P, K, and N. P is equal to the frequency of 1?s (suitable cells) divided by the total number of cells (suitable cells + non-suitable cells). K is the total number of test-occurrences predicted suitable (value of 1). N is the total number of test-occurrences. na.rm=TRUE means that all values with NA (none existent) should be deleted
+
+P_OT <- freq(OT_map2, value=1) / (freq(OT_map2, value=1) + freq(OT_map2, value=0))
+
+K_OT <- sum(testresult_OT == 1, na.rm=TRUE)
+
+N_OT <- length(testresult_OT)
+
+#calculate the success, and do the binomial test
+
+succes <- K_OT/N_OT
+
+binom.test(K_OT, N_OT, p = P_OT,alternative = c("two.sided", "less", "greater"),conf.level = 0.95)
+
+
+# STUDDED BLUE -----------------------------------------------------------------
+SB_train <- read.csv("Data/species occurrences/SB_train.csv", sep=",") # import the training dataset of the orange tip
+
+SB_train$species <- NULL #  delete the first column called species (if it is called Species [with a capital S] or something else, change this in the code)
+
+head(SB_train) # check how the dataset looks. You should just have a dataset with latitude and longitude showing.
+
+# import all variables with the extension .asc (so all environmental files). NOTE! You may have to change the pathname displayed in the code. Load the files into a stack called variables
+
+list_variables <- list.files(path="Data/input variables", pattern="*.asc", full.names=TRUE)
+
+variables <- stack(list_variables)
+
+# extract data for all variables at the coordinates from the species occurrence file (OT_train), and check the object
+
+variables_SB <- extract(variables, SB_train)
+head(variables_SB)
+
+# If you get a file with only NA at this point, it is likely that the order of your longitude, latitude columns is wrong in the OT_train file. The longitude column should show before your latitude column. To fix this you can use this piece of code: OT_train <- OT_train[,c(2,1)] (which swaps column 1 and 2 around).
+
+# perform correlation using the method kendall and save it in a file called cor_matrix_OT, export the file to the specified folder
+
+cor_matrix_SB <- cor(variables_SB, use="complete.obs", method="kendall")
+
+write.csv(cor_matrix_SB, "Output/cor_matrix_OT.csv")
+
+
+# import the raster file, plot the raster file
+
+SB_map <- raster("Output/Output SB2/Plebejus_argus.asc")
+
+plot(SB_map)
+
+# import the csv file, select the cells that have a value larger than the threshold, plot the new map
+
+maxres_SB <- read.csv("Output/Output SB2/maxentResults.csv", sep=",")
+
+SB_map2 <- SB_map > maxres_SB $Maximum.training.sensitivity.plus.specificity.logistic.threshold
+
+#In case you get an error after this line of code. Go to check the maxentResults.csv file in Excel and check all the names in the headers. Somewhere around column BW (if you use Maxent version 3.3.3, it may be totally somewhere else if you use a different version) there should be a column named  Maximum training sensitivity plus specificity logistic threshold. Check the exact spelling and use of cases.
+
+plot(SB_map2)
+
+# import test occurrences, delete the species column, extract the frequency of test-occurrences predicted suitable and non-suitable
+
+SB_test <- read.csv("Data/species occurrences/SB_test.csv", sep=",")
+
+SB_test$species<-NULL
+
+testresult_SB <- extract(SB_map2, SB_test)
+
+# define P, K, and N. P is equal to the frequency of 1?s (suitable cells) divided by the total number of cells (suitable cells + non-suitable cells). K is the total number of test-occurrences predicted suitable (value of 1). N is the total number of test-occurrences. na.rm=TRUE means that all values with NA (none existent) should be deleted
+
+P_SB <- freq(SB_map2, value=1) / (freq(SB_map2, value=1) + freq(SB_map2, value=0))
+
+K_SB <- sum(testresult_SB == 1, na.rm=TRUE)
+
+N_SB <- length(testresult_SB)
+
+#calculate the success, and do the binomial test
+
+succes <- K_SB/N_SB
+
+binom.test(K_SB, N_SB, p = P_SB,alternative = c("two.sided", "less", "greater"),conf.level = 0.95)
+
+# ------------------------------------------------------------------------------
+library(raster)
+library(rgdal)
+library(ncdf4)
+
+# set working directory
+setwd("C://Users/PC/Desktop/Wildlife Conservation Assignments/W3 Species Distribution Modelling/") # update to your own working directory!
+
+# open your raster with n bands
+f <- stack('Data/worldclim/future_data.tif')
+# set the extent again
+e <- c(3, 7.5, 50.5, 54)
+# crop the stack of rasters to the extent
+f.crop <- crop(f, e)
+
+# save raster in a separate file (in the "data/Input variables future" folder) with the name bio and in the format asci
+for(i in 1:nlayers(f.crop)){
+  band <- f.crop[[i]] # here we retrieve layer i from the rasterStack
+  writeRaster(band, paste('Data/input variables future/bio', i, '.asc',  sep=''))
+}
+
+# check if it worked by importing and plotting one file
+bio1_future <- raster("Data/input variables future/bio1.asc")
+plot(bio1_future )
+# check if the extent and resolution match that of the bio1 file you created yesterday
+bio1_current <- raster("Data/input variables/bio1.asc")
+res(bio1_current)
+res(bio1_future) # Note that if you used 5m yesterday and 10m yesterday, these resolutions are not the same.
+extent(bio1_current) # yet, For projection into the future this is not a problem.
+extent(bio1_future)
+
+# import the primf file from the Future.nc file
+Future <- brick("Data/luh/Future.nc", varname = "range")
+
+# crop it to the right extent and only take the values for the years 2081-2100 [or the range of years you chose to work with]
+Future <- crop(mean(Future[[67:86]]),e)
+
+# make the cellsizes correspond that from the bio1 raster
+Future <- resample(Future, bio1_current)
+
+#export the raster to the folder Input variable future in an ascii format with the name primf
+writeRaster(Future, "Data/input variables future/primf.asc", format = "ascii", overwrite = TRUE)
+
+## repeat this procedures for the other variables: either (a) by copying the 4 R commands above (form loading the layer from a brick, to saving a raster file) and change the "varname" argument, or (b) by creating a "loop" that iterates over some code and does it for all variables.
+
+# Specify a vector of layers in the brick that we want to load, process and save
+layers <- c("primf","primn","secdf","secdn","urban","c3ann","c4ann","c3per","c4per","c3nfx","pastr","range","secmb","secma")
+# length(layers)
+for(i in layers)
+{
+  Current <- brick("Data/luh/Future.nc", varname = i)
+  Current <- crop(Current, e)
+  Current <- mean(Current[[67:86]])
+  Current <- resample(Current, bio1_current)
+  writeRaster(Current, paste0("Data/input variables future/",i,".asc"), format = "ascii", overwrite=TRUE)
+}
+
+# let's check if it worked! Import a random land use raster, plot it, check the resolution and check the extent.
+
+secma <- raster("Data/input variables future/secma.asc")
+plot(secma)
+res(bio1_current)
+res(secma)
+extent(bio1_current)
+extent(secma)
+
+# future prediction of OT
+prediction <- raster("Output/Output OT future/Anthocharis_cardamines.asc")
+plot(prediction)
+
+# future predictions of SB
+prediction <- raster("Output/Output SB future/Plebejus_argus.asc")
+plot(prediction)
+
+#-------------------------------------------------------------------------------
+
+library(raster)
+library(rgdal)
+library(ncdf4)
+
+setwd("C://Users/PC/Desktop/Wildlife Conservation Assignments/W3 Species Distribution Modelling/") # update to your own working directory!
+
+# import the raster
+bio1 <- raster("Data/input variables/bio1.asc")
+
+# The code below creates a matrix that specifies in the first two columns the range the values in the a raster can take. Inf stands for infinity. In the third column the value that should be assigned to all values defined by the range you specified is stated (1). This matrix is then used to reclassify a raster.
+
+m <- c(-Inf, Inf, 1)
+rclmat <- matrix(m, ncol=3, byrow=TRUE)
+bio <- reclassify(bio1, rclmat)
+
+
+#The code below plots the new raster and checks the frequency of the values in the raster, which should be only ones and NAs.
+
+plot(bio)
+freq(bio)
+
+# first we import the population raster, then multiplies all the values with -1, crop and resample the raster to match the bio raster and plots the new raster.
+
+population <- raster("Data/NLD_pop/nld_pop.gri")
+population <- population * -1
+population <- crop(population, bio)
+population <- resample(population, bio)
+plot(population)
+
+#The following lines in the code tell R where to find the shapefile and to import it.
+water <- readOGR("Data/NLD_wat", "NLD_water_areas_dcw")
+
+#The following code turns the shapefile into a raster, using bio as a mask (the new raster will get the same shape as the bio raster). It then tells R to reclassify the values using the same matrix as earlier so you will get a raster with only ones and NAs.
+water <- rasterize(water, bio1, fun='last', background=NA, mask=TRUE, update=FALSE)
+water <- reclassify(water, rclmat)
+
+#The following lines in the code tell R to check the frequency (only ones and NA) and to plot your new raster so you can check how it looks like.
+freq(water)
+plot(water, col = "blue")
+
+#it is correct that you only see a few dots, but this is not what we want. We also want the north sea to show.
+# The following code will substitute the NA values for the value 0 and then simply add the bio raster. It then checks the plot and the frequency of the values again and you can see that we need to reclassify again so that waterbodies have a lower value than land.
+
+water[is.na(water)] <- 0
+water <- water + bio
+plot(water)
+freq(water)
+
+#the following code creates a matrix called rclmat2 and reclassifies the water raster using the new matrix. It then plots the last water raster and checks the frequency.
+m2 <- c(-Inf,1.5,1, 1.5,Inf,0)
+rclmat2 <- matrix(m2, ncol=3, byrow=TRUE)
+water <- reclassify(water, rclmat2)
+plot(water)
+freq(water)
+
+res(bio)
+res(water)
+res(population)
+extent(bio)
+extent(water)
+extent(population)
+
+
+writeRaster(population, "Data/input zonation/population.asc", format = "ascii")
+writeRaster(water, "Data/input zonation/water.asc", format = "ascii")
+
+
+# interpretation of zonation ---------------------------------------------------
+
+#the following code tells R where to find the raster of the Butterflies_current and imports it and plots it so you can check how it looks.
+
+current <- raster("Output/Zonation Output/Butterflies_current/outputs/Butterflies_current.ABF_EBLP50.rank.compressed.tif")
+plot(current)
+
+#The following code turns the raster into a dataframe, and changes the name of the third column, and shows you the first 5 lines of the dataframe you created.
+
+current_df <- as.data.frame(current, row.names=NULL, optional=FALSE, xy=TRUE, na.rm=TRUE)
+colnames(current_df)[3] <- "Zonation_current"
+head(current_df)
+
+# the following code repeats it for the future
+
+future <- raster("Output/Zonation Output/Butterflies_future/outputs/Butterflies_future.ABF_EBLP50.rank.compressed.tif")
+future_df <- as.data.frame(future, row.names=NULL, optional=FALSE, xy=TRUE,na.rm=TRUE)
+colnames(future_df)[3] <- "Zonation_future"
+
+#the following code merges the two dataframes in one big dataframe, and tells R where to export it to, and exports it to a csv file.
+
+Zonation_output <- merge(current_df,future_df, by.x=c("x", "y"), by.y=c("x", "y"), all.x=TRUE, all.y=TRUE)
+write.csv(Zonation_output, file = "Output/Zonation Output/Zonation_output.csv")
+
+#The following code creates new rasters with a value of 1 for all zonation values >95 and zero for the values below. It then combines the two new rasters, multiplies one of them by 2 to be able to distinguish the rasters from each other and plots it.
+current95 <- current > 0.95
+future95 <- future > 0.95
+PAs <- current95 + (future95*2)
+plot(PAs)
+
+#the following code tells R where to store it, specifies the name, width, height, resolution, and exports it.
+
+jpeg("Output/Zonation Output/Protected areas.jpg",width = 10, height = 10, units = "cm", pointsize = 12,quality = 100,bg = "white",res = 600)
+plot(PAs)
+dev.off()
+
+#-------------------------------------------------------------------------------
+
+library(raster)
+library(rgdal)
+
+setwd("C://Users/PC/Desktop/Wildlife Conservation Assignments/W3 Species Distribution Modelling/") # update to your own working directory!
+
+#1st line: imports a raster that can serve as a "mask" or example for the outline of our study region (the Netherlands), which is now called bio1
+#2nd line and 3rd line: creates a matrix of 3 columns and 1 row with in the first column the "value" -infinitive, in the second column the "value" infinitive and in the third column the value 1. This matrix will be used to reclassify all the values that range from -infinitive to infinitive from the bio1 raster into the value 1 , so we get a raster from The Netherlands in which each pixel has the value 1. We need this for later.
+#4th line: reclassifies the pixels
+#5th and 6th line: allows you to see how the plot looks like and checks the frequency of occurrence of the pixel values (so we only want 1 and NA [non existing])
+
+bio1 <- raster("Data/worldclim/bioNL/bio1.asc")
+m <- c(-Inf, Inf, 1)
+rclmat <- matrix(m, ncol=3, byrow=TRUE)
+bio <- reclassify(bio1, rclmat)
+plot(bio)
+freq(bio)
+
+
+# 1st line: imports the shapefile from the protected areas, which you call PA
+# 2nd line: plots the shapefile PA in red
+# 3rd line: turns the shapefile into a raster, using the bio raster as a mask so your new raster gets the extent and the shape of your bio raster, this new raster is now called PA1
+# 4th line: gives all the pixels in the PA1 raster that have no value (NA), a value of 0
+# 5th line: adds the bio 1 raster to the PA1 raster to get a new raster in which all the pixels displaying protected areas have a value of 2 and the pixels displaying the rest of The Netherlands have a value of 1
+# 6th and 7th line: creates a matrix of 3 columns and 2 rows with in the first row in the first column the "value" -infinitive, in the second column the value 1.5, and in the third column the value 0. In the second row we have in the first column the value 1.5, in the second column the "value" infinitive, and in the third column the value 2. This will be used to reclassify all the pixels in the PA2 raster with values between -infinitive and 1.5 into 0 and between 1.5 and infinitive into 2. (We need not have picked the values -infinitive and infinitive here, but it works..)
+# 8th line: reclassifies the PA2 raster using the just newly created matrix and calls the new raster PA3.
+# 9th and 10th line: allows you to see how the plot looks like and checks the frequency of occurrence of the pixel values (so we want The Netherlands to have pixels with the value 0 and the protected areas pixels with the value 2)
+
+PA <- readOGR("Data/Ecological restoration", "WDPA")
+plot(PA, col = "red")
+PA1 <- rasterize(PA, bio, fun='last', background=NA,mask=TRUE, update=FALSE)
+PA1[is.na(PA1)] <- 0
+PA2 <- PA1 + bio
+m2 <- c(-Inf,1.5,0, 1.5,Inf,2)
+rclmat2 <- matrix(m2, ncol=3, byrow=TRUE)
+PA3 <- reclassify(PA2, rclmat2)
+plot(PA3)
+freq(PA3)
+
+#1st line: imports the raster made by Zonation and calls it areas
+#2nd line: selects all the pixels that have a value over 0.95 (so they are very suitable for the butterflies according to zonation) and calls it areas95
+#3rd line: plots the newly made raster for you to view.
+
+areas <- raster("Output/Zonation Output/Butterflies_current_future/outputs/Butterflies_Current_Future.ABF_EBLP50.rank.compressed.tif")
+areas95 <- areas > 0.95
+plot(areas95)
+
+#1st line: combines the areas95 raster with the PA3 raster
+#2nd and 3rd line: allows you to view the result and check the frequency of the values that appear in the pixels. Pixels with the value 0 just show the part of the The Netherlands that is not suitable for the butterflies and is not protected either, pixels with the value 1 show the areas that are suitable for the butterflies to occur but that are currently not protected. Pixels with the value 2 are protected areas that are not suitable for the butterflies. Pixels with the value 3 are suitable for the butterflies and are already protected (see figure below).
+#4th line: turns the raster file into a shapefile
+#5th line: exports the newly made shapefile called PA_network to the output/zonation folder
+
+overlap <- areas95 + PA3
+plot(overlap)
+freq(overlap)
+poly_overlap = rasterToPolygons(overlap)
+raster::shapefile(poly_overlap, "Output/Zonation/pa_network.shp")
+
+#The line of code above likely gave you an error (something about spatial polygons #needing to have valid ordering comments, and using rgeos and SPS comment).
+#The code below should fix what the error is telling you.
+
+install.packages("rgeos")
+library(rgeos)
+poly_overlap <- rgeos::createSPComment(poly_overlap)
+
+#Now run the line of code again:
+shapefile(poly_overlap, "Output/Zonation/pa_network.shp")
+
