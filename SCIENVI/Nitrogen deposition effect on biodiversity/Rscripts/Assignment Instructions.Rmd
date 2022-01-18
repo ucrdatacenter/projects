@@ -2,14 +2,19 @@
 title: "Assignment Instruction"
 author: "Bianka Fábryová"
 date: "18 1 2022"
-output: github-document:
-    toc: true
-     toc_depth: 2
+output: github_document
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(sp)
+library(raster)
+library(rgdal)
+library(readr)
+library(tidymodels)
 ```
+
+![fringilla](https://user-images.githubusercontent.com/84587448/148916498-2fb3d7c6-5d03-4c85-9a0f-68f5efff1efe.jpg)
 
 ## R Markdown
 
