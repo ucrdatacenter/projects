@@ -1,11 +1,18 @@
 ---
 title: "Assignment Instruction"
-author: "Bianka Fábryová"
-date: "18 1 2022"
 output: github_document
 ---
 
-```{r setup, include=FALSE}
+These assignment instructions serve you as a guide in completing your original assignment. Here, I will walk you step by step through an example of the assignment. Once you complete this, you can start with your own variation of the assignment. Creativity is very welcome. 
+In your version of the assignment you choose:
+
+    - species you want to study
+    - year (Nitrogen deposition and species occurences)
+
+### The correlation between Chaffinch, Fringilla coelebs, and Nitrogen deposition levels in the Netherlands
+
+![fringilla](https://user-images.githubusercontent.com/84587448/148916498-2fb3d7c6-5d03-4c85-9a0f-68f5efff1efe.jpg)    
+```{r setup, include=TRUE}
 library(tidyverse)
 library(sp)
 library(raster)
@@ -14,13 +21,6 @@ library(readr)
 library(tidymodels)
 ```
 
-![fringilla](https://user-images.githubusercontent.com/84587448/148916498-2fb3d7c6-5d03-4c85-9a0f-68f5efff1efe.jpg)
-
-## R Markdown
-
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
-
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
 
 ```{r cars}
 summary(cars)
