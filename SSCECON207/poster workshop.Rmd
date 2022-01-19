@@ -93,7 +93,33 @@ Make sure to remember that R is case-sensitive, so e.g. a filter set as `country
 
 ## Other data manipulation
 
-select & pivot_longer
+In some cases it is easier to work with a data frame that only includes the variables that you need.
+You can select these variables using the `select()` function.
+You can either list the variables that you want to keep as the arguments of the function, or you can list the variables you want to remove, using a `-` sign in front of the variable name.
+
+For example, you can filter your data to only include the year and the components of GDP:
+```{r}
+data_US %>% 
+  select(year, consumption, investment, govt_spending)
+```
+
+If you want to plot these variables on one figure, it helps to turn the data into long format.
+
+Now each row of the data corresponds to one year, and three columns show the values of three variables.
+This is called wide format.
+In long format you would have three rows corresponding to one year, a single column of variable values, and a column specifying which component of GDP that value is.
+
+You can convert between these two forms using the `pivot_longer()` and `pivot_wider()` functions.
+Below is an example of using `pivot_longer()`.
+If you need more help on the function arguments, the help-files of the function provide a good explanation.
+You can access these files by running `?pivot_longer()` and `?pivot_wider()`.
+
+```{r}
+data_US %>% 
+  select(year, consumption, investment, govt_spending) %>% 
+  pivot_longer(cols = -year, names_to = "component", values_to = "value") # cols = -year -> use all columns except year
+```
+
 
 # First `ggplot` figures
 

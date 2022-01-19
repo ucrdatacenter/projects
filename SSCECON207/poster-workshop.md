@@ -125,7 +125,67 @@ will not work.
 
 ## 3.3 Other data manipulation
 
-select & pivot\_longer
+In some cases it is easier to work with a data frame that only includes
+the variables that you need. You can select these variables using the
+`select()` function. You can either list the variables that you want to
+keep as the arguments of the function, or you can list the variables you
+want to remove, using a `-` sign in front of the variable name.
+
+For example, you can filter your data to only include the year and the
+components of GDP:
+
+``` r
+data_US %>% 
+  select(year, consumption, investment, govt_spending)
+```
+
+    ## # A tibble: 8 x 4
+    ##    year consumption investment govt_spending
+    ##   <dbl>       <dbl>      <dbl>         <dbl>
+    ## 1  2006       2.59        3.06        1.22  
+    ## 2  2007       2.28       -1.62        1.60  
+    ## 3  2008       0.576      -6.21        2.45  
+    ## 4  2009      -0.251     -16.6         4.26  
+    ## 5  2010       1.53       10.5         0.0111
+    ## 6  2011       0.761       4.22       -3.07  
+    ## 7  2012       0.831       7.66       -1.46  
+    ## 8  2013       0.858       4.67       -1.89
+
+If you want to plot these variables on one figure, it helps to turn the
+data into long format.
+
+Now each row of the data corresponds to one year, and three columns show
+the values of three variables. This is called wide format. In long
+format you would have three rows corresponding to one year, a single
+column of variable values, and a column specifying which component of
+GDP that value is.
+
+You can convert between these two forms using the `pivot_longer()` and
+`pivot_wider()` functions. Below is an example of using
+`pivot_longer()`. If you need more help on the function arguments, the
+help-files of the function provide a good explanation. You can access
+these files by running `?pivot_longer()` and `?pivot_wider()`.
+
+``` r
+data_US %>% 
+  select(year, consumption, investment, govt_spending) %>% 
+  pivot_longer(cols = -year, names_to = "component", values_to = "value") # cols = -year -> use all columns except year
+```
+
+    ## # A tibble: 24 x 3
+    ##     year component      value
+    ##    <dbl> <chr>          <dbl>
+    ##  1  2006 consumption    2.59 
+    ##  2  2006 investment     3.06 
+    ##  3  2006 govt_spending  1.22 
+    ##  4  2007 consumption    2.28 
+    ##  5  2007 investment    -1.62 
+    ##  6  2007 govt_spending  1.60 
+    ##  7  2008 consumption    0.576
+    ##  8  2008 investment    -6.21 
+    ##  9  2008 govt_spending  2.45 
+    ## 10  2009 consumption   -0.251
+    ## # ... with 14 more rows
 
 # 4 First `ggplot` figures
 
@@ -162,7 +222,7 @@ data_US %>% # feed the previously created data frame into the ggplot function ca
   theme_light() # change the color scheme and layout of the plot to a different theme
 ```
 
-![](poster-workshop_files/figure-gfm/unnamed-chunk-6-1.png)<!-- -->
+![](poster-workshop_files/figure-gfm/unnamed-chunk-8-1.png)<!-- -->
 
 If you are happy with how a figure looks, you can save it using the
 `ggsave()` function and specifying the file name you want to use:
@@ -189,7 +249,7 @@ data_US %>%
   theme_light()
 ```
 
-![](poster-workshop_files/figure-gfm/unnamed-chunk-8-1.png)<!-- -->
+![](poster-workshop_files/figure-gfm/unnamed-chunk-10-1.png)<!-- -->
 
 ``` r
 ggsave("scatterplot.jpg") 
@@ -212,7 +272,7 @@ data_US %>%
   theme_light()
 ```
 
-![](poster-workshop_files/figure-gfm/unnamed-chunk-10-1.png)<!-- -->
+![](poster-workshop_files/figure-gfm/unnamed-chunk-12-1.png)<!-- -->
 
 ``` r
 ggsave("GDP.jpg")
