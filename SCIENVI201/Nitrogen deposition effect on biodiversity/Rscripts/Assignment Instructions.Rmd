@@ -1,0 +1,59 @@
+---
+title: "Assignment Instruction"
+output: github_document
+---
+
+These assignment instructions serve you as a guide in completing your original assignment. Here, I will walk you step by step through an example of the assignment. Once you complete this, you can start with your own variation of the assignment. Creativity is very welcome. 
+In your version of the assignment you choose:
+
+    - species you want to study
+    - year (Nitrogen deposition and species occurences)
+
+### The correlation between Chaffinch, Fringilla coelebs, and Nitrogen deposition levels in the Netherlands
+
+![fringilla](https://user-images.githubusercontent.com/84587448/148916498-2fb3d7c6-5d03-4c85-9a0f-68f5efff1efe.jpg)  
+
+## LIBRARIES
+
+Before starting with the assignment, you always need to install the libraries you have not used before with the code install.packages(...). However, once you have installed them you do not need to do it again, but you need to load them at the beginning of every session with the code library(...).
+
+No, after installing all the libraries you can load them in your R, so they are ready to be used. 
+This is the list of all the libraries that you need for completing the assignment. Every section has a comment which says which library you are using.
+
+```{r echo = TRUE, message = FALSE}
+library(tidyverse)
+library(tidymodels)
+library(sp)
+library(raster)
+library(rgdal)
+library(readr)
+```
+
+## DATA IMPORT
+
+#### Nitrogen data
+libraries needed: _library(sp)_ and _library(raster)_
+
+Go to the website: https://www.rivm.nl/gcn-gdn-kaarten/depositiekaarten/cijfers-achter-depositiekaarten/gdn-depositiebestanden-achterliggende-jaren, and download total Nitrogen deposition (Total stikstof (N)) from the year 2018 (ndep 2018). Once downloaded, you can see that the data is in a zipped file which cannot be worked with in R. Therefore, now you _extract all_ with the right click, and save the extracted data into a new folder called Data in your Ecology Project file. I renamed the folder from depo_ntot_2018 to nitrogen for a simple overview, but you can order your files according to your preferences. In case something went wrong, the Nitrogen data can be found on github: projects/Environmental science/Nitrogen deposition effect on biodiveristy/Data/nitrogen. Now, we can importing the data on Nitrogen deposition levels
+
+```{r echo = TRUE, message = FALSE}
+Nitrogen_2018 <- raster("GitHub/projects/SCIENVI/Nitrogen deposition effect on biodiversity/Data/nitrogen/depo_ntot_2018.asc")
+```
+
+Lets see how does Nitrogen deposition map looks like.
+```{r echo = TRUE, message = FALSE}
+plot(Nitrogen_2018)
+```
+## DATA TIDYING
+
+## PLOTTING
+
+## STATISTICAL ANALYSIS
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
