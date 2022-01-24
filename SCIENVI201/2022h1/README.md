@@ -31,6 +31,7 @@
   What is the relationship between species occurences and Nitrogen deposition levels. 
   
   ## Literature
+  WallisDeVries, M.F., Van Swaay, C.A.M., 2017. A Nitrogen Index to Track Changes in Butterfly Species Assemblages Under Nitrogen Deposition. Biol. Conserv. 212, 448–453
   Hernández, D. L., Vallano, D. M., Zavaleta, E. S., Tzankova, Z., Pasari, J. R., Weiss, S., ... & Morozumi, C. (2016). Nitrogen pollution is linked to US listed species declines. BioScience, 66(3), 213-222.
    
   Stevens, C. J., David, T. I., & Storkey, J. (2018). Atmospheric nitrogen deposition in terrestrial ecosystems: Its impact on plant communities and consequences across trophic levels. Functional ecology, 32(7), 1757-1769.
