@@ -25,7 +25,7 @@ library(tidymodels)
 
 ## Once you have all the libraries loaded, we will set a working directory, a root of the project in your PC, so we can find all the files related to our project at one place.
 ## This can be done also by clicking Session (toolbar in the top), working directory, choose directory, and navigating to the folder that contains your data.
-setwd("C://Users/PC/Documents/GitHub/private-files") # update to your own working directory ????
+setwd("C://Users/PC/Documents/GitHub/projects") # update to your own working directory ????
 
 
 # DATA IMPORT ------------------------------------------------------------------
