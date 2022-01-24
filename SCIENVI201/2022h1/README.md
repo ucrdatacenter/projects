@@ -28,12 +28,15 @@
   
  
   ## RESEARCH FOCUS
-  Study of the relationship between organism occurences and Nitrogen deposition levels. 
+  What is the relationship between species occurences and Nitrogen deposition levels. 
   
   ## Literature
-  Hernández, D. L., Vallano, D. M., Zavaleta, E. S., Tzankova, Z., Pasari, J. R., Weiss, S., ... & Morozumi, C. (2016). Nitrogen pollution is linked to US listed species declines. BioScience, 66(3), 213-222.
-   
+  WallisDeVries, M.F., Van Swaay, C.A.M., 2017. A Nitrogen Index to Track Changes in Butterfly Species Assemblages Under Nitrogen Deposition. Biol. Conserv. 212, 448–453
+ 
+  Payne, R. J., Dise, N. B., Stevens, C. J., & Gowing, D. J. (2013). Impact of nitrogen deposition at the species level. Proceedings of the National Academy of Sciences, 110(3), 984-987. 
+ 
+ de Vries, W., Erisman, J. W., Spranger, T., Stevens, C. J., & van den Berg, L. (2011). Nitrogen as a threat to European terrestrial biodiversity. The European nitrogen assessment: sources, effects and policy perspectives, 436-494.
+ 
   Stevens, C. J., David, T. I., & Storkey, J. (2018). Atmospheric nitrogen deposition in terrestrial ecosystems: Its impact on plant communities and consequences across trophic levels. Functional ecology, 32(7), 1757-1769.
-  
-  Payne, R. J., Dise, N. B., Stevens, C. J., & Gowing, D. J. (2013). Impact of nitrogen deposition at the species level. Proceedings of the National Academy of Sciences, 110(3), 984-987.
+ 
    
