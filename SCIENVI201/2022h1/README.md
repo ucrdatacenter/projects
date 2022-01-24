@@ -22,7 +22,7 @@
   
           -  Obtaining and importing data from an online source to R
           -  Filtering and adjusting data to reach a set of desired information only
-          -  Visualization of species occurences on a map (perhaps inclusion of map software QGIS)
+          -  Visualization of species occurences and Nitrogen deposition leves
           -  Visualization of graphs in R
           -  Performing statistical test
   
