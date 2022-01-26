@@ -1,5 +1,4 @@
 
-
 # CHAFFINCH
 
 ## Before starting with the assignment, you always need to install the libraries you have not used before with the code install.packages(...).
@@ -25,7 +24,7 @@ library(tidymodels)
 
 ## Once you have all the libraries loaded, we will set a working directory, a root of the project in your PC, so we can find all the files related to our project at one place.
 ## This can be done also by clicking Session (toolbar in the top), working directory, choose directory, and navigating to the folder that contains your data.
-setwd("C://Users/PC/Documents/GitHub/projects") # update to your own working directory ????
+setwd("C://Users/PC/Documents/GitHub/projects") # update to your own working directory
 
 
 # DATA IMPORT ------------------------------------------------------------------
@@ -38,6 +37,7 @@ setwd("C://Users/PC/Documents/GitHub/projects") # update to your own working dir
 ## If something went wrong, the Nitrogen data can be found on github: projects/Environmental science/Nitrogen deposition effect on biodiveristy/Data/nitrogen
 ## importing the data on Nitrogen deposition levels
 Nitrogen_2018 <- rast("SCIENVI201/2022h1/Data/nitrogen/depo_ntot_2018.asc")
+
 ## Lets see how does Nitrogen deposition map looks like.
 Nitrogen_2018 %>%
   as.data.frame(xy=T) %>%
@@ -59,6 +59,10 @@ Nitrogen_2018 %>%
 ## importing the data on chaffinch (Fringilla coelebs)
 Chaffinch_2018 <- read_delim("SCIENVI201/2022h1/Data/chaffinch/chaffinch_2018.csv",
                              delim = "\t", escape_double = FALSE, trim_ws = TRUE)
+
+## Lets see where does the chaffinch occur on the map
+ggplot(Chaffinch_2018) +
+  geom_point(aes(decimalLongitude, decimalLatitude))
 
 ## Lets see how this data set looks like.
 Chaffinch_2018 %>% view()
