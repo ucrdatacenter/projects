@@ -4,12 +4,13 @@ This folder contains materials relevant to the poster and paper assignments in t
 Details about the assignments, including grading rubrics, are available on Moodle.
 Workshop handouts and other supporting materials are available on the [Data Center website](https://ucrdatacenter.github.io/SSCECON207).
 
-For the IS-LM poster, this folder contains:
+For the IS-LM poster (workshop 1 folder), this folder contains:
 
 * the data file (ISLM_data.csv);
 * a list of available country-year combinations in the data file (available_data.csv);
 * an example of what a finished poster could look like.
 
-For the paper on growth, this folder contains:
+For the paper on growth (workshop 2 folder), this folder contains:
 
-* TBA.
+* GDP from the [OECD database](https://data.oecd.org/gdp/gross-domestic-product-gdp.htm);
+* CO2 emissions from the [World Bank Database](https://data.worldbank.org/indicator/EN.ATM.CO2E.PC).
