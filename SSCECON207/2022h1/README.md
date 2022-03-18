@@ -10,6 +10,8 @@ For the IS-LM poster (workshop 1 folder), this folder contains:
 * a list of available country-year combinations in the data file (available_data.csv);
 * an example of what a finished poster could look like.
 
+The IS-LM dataset contains the real interest rate, CPI-based inflation rate, and growth rates in GDP, consumption, investment, government spending.
+
 For the paper on growth (workshop 2 folder), this folder contains:
 
 * GDP from the [OECD database](https://data.oecd.org/gdp/gross-domestic-product-gdp.htm);
