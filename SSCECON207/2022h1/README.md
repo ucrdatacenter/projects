@@ -15,4 +15,5 @@ The IS-LM dataset contains the real interest rate, CPI-based inflation rate, and
 For the paper on growth (workshop 2 folder), this folder contains:
 
 * GDP from the [OECD database](https://data.oecd.org/gdp/gross-domestic-product-gdp.htm);
-* CO2 emissions from the [World Bank Database](https://data.worldbank.org/indicator/EN.ATM.CO2E.PC).
+* CO2 emissions from the [World Bank Database](https://data.worldbank.org/indicator/EN.ATM.CO2E.PC);
+* an example of what a finished paper could look like.
