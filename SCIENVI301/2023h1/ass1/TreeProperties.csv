@@ -1,0 +1,644 @@
+"","Species","Treatment","NetCarbonAssimilation","LeafT"
+"1","Quercus ellipsoidalis","Monoculture",13.39269759,28.62595367
+"2","Quercus ellipsoidalis","Monoculture",13.24286025,28.49238777
+"3","Quercus ellipsoidalis","Monoculture",14.02601083,28.37041855
+"4","Quercus ellipsoidalis","Monoculture",11.78874678,28.14287949
+"5","Quercus ellipsoidalis","Monoculture",7.586980915,27.98381042
+"6","Quercus ellipsoidalis","Monoculture",4.720812292,28.13901901
+"7","Quercus ellipsoidalis","Monoculture",2.16317817,28.22547913
+"8","Quercus ellipsoidalis","Monoculture",0.093950626,28.26072884
+"9","Quercus ellipsoidalis","Monoculture",-0.623962549,28.31894875
+"10","Quercus ellipsoidalis","Twelve-species",14.68281407,28.27688599
+"11","Quercus ellipsoidalis","Twelve-species",16.31380868,28.15702248
+"12","Quercus ellipsoidalis","Twelve-species",16.0561167,27.95010567
+"13","Quercus ellipsoidalis","Twelve-species",13.02891953,27.73360443
+"14","Quercus ellipsoidalis","Twelve-species",10.20568986,27.66710663
+"15","Quercus ellipsoidalis","Twelve-species",5.538146329,27.72093582
+"16","Quercus ellipsoidalis","Twelve-species",3.39962193,27.77033234
+"17","Quercus ellipsoidalis","Twelve-species",1.177241741,27.71622276
+"18","Quercus ellipsoidalis","Twelve-species",-0.482498796,27.73335075
+"19","Tilia americana","Monoculture",8.891985578,27.44367027
+"20","Tilia americana","Monoculture",9.259622404,27.21677208
+"21","Tilia americana","Monoculture",9.511029808,26.99090958
+"22","Tilia americana","Monoculture",8.975762222,26.78269196
+"23","Tilia americana","Monoculture",5.87730324,26.63372803
+"24","Tilia americana","Monoculture",3.718695752,26.60690689
+"25","Tilia americana","Monoculture",1.483026382,26.5931282
+"26","Tilia americana","Monoculture",-0.056918561,26.59512138
+"27","Tilia americana","Monoculture",-1.546420595,26.55739594
+"28","Betula papyrifera","Monoculture",21.58150411,28.98554802
+"29","Betula papyrifera","Monoculture",20.64649939,28.20927429
+"30","Betula papyrifera","Monoculture",19.04436451,27.15864182
+"31","Betula papyrifera","Monoculture",16.29644986,26.16661644
+"32","Betula papyrifera","Monoculture",8.932733963,25.72317505
+"33","Betula papyrifera","Monoculture",4.116126906,25.42686653
+"34","Betula papyrifera","Monoculture",2.18936792,25.43412399
+"35","Betula papyrifera","Monoculture",0.447258986,25.4553833
+"36","Betula papyrifera","Monoculture",-1.100727949,25.41807747
+"37","Betula papyrifera","Twelve-species",27.57021735,29.02140045
+"38","Betula papyrifera","Twelve-species",25.80960174,28.90885544
+"39","Betula papyrifera","Twelve-species",23.96868172,28.30636787
+"40","Betula papyrifera","Twelve-species",18.79957967,27.66370773
+"41","Betula papyrifera","Twelve-species",10.13079032,26.69301033
+"42","Betula papyrifera","Twelve-species",4.61985661,26.62225914
+"43","Betula papyrifera","Twelve-species",2.779847269,26.67870712
+"44","Betula papyrifera","Twelve-species",-0.210508291,26.65892601
+"45","Betula papyrifera","Twelve-species",-1.142080025,26.50159264
+"46","Acer rubrum","Monoculture",8.734581461,29.79457664
+"47","Acer rubrum","Monoculture",9.965427141,29.9481163
+"48","Acer rubrum","Monoculture",10.51087594,29.75792122
+"49","Acer rubrum","Monoculture",9.864129331,29.64595413
+"50","Acer rubrum","Monoculture",7.261342441,29.20534515
+"51","Acer rubrum","Monoculture",4.071528178,29.42604446
+"52","Acer rubrum","Monoculture",2.197257341,29.49244881
+"53","Acer rubrum","Monoculture",0.058722846,29.34504128
+"54","Acer rubrum","Monoculture",-0.798819326,29.14152527
+"55","Quercus ellipsoidalis","Shaded biculture",25.93333926,27.66135979
+"56","Quercus ellipsoidalis","Shaded biculture",25.98724513,26.89100647
+"57","Quercus ellipsoidalis","Shaded biculture",24.67078265,26.07266426
+"58","Quercus ellipsoidalis","Shaded biculture",19.36679856,25.17317963
+"59","Quercus ellipsoidalis","Shaded biculture",10.8621756,24.58608437
+"60","Quercus ellipsoidalis","Shaded biculture",5.544722481,24.67485237
+"61","Quercus ellipsoidalis","Shaded biculture",2.463650242,24.70202255
+"62","Quercus ellipsoidalis","Shaded biculture",0.458120323,24.80778122
+"63","Quercus ellipsoidalis","Shaded biculture",-1.466782006,24.93092537
+"64","Acer rubrum","Twelve-species",8.237908602,25.84666824
+"65","Acer rubrum","Twelve-species",6.931129836,25.77213478
+"66","Acer rubrum","Twelve-species",7.09824993,25.66400337
+"67","Acer rubrum","Twelve-species",6.496875259,25.50695229
+"68","Acer rubrum","Twelve-species",5.613468018,25.29244804
+"69","Acer rubrum","Twelve-species",3.519499073,25.2902565
+"70","Acer rubrum","Twelve-species",1.592157308,25.31895638
+"71","Acer rubrum","Twelve-species",0.031870611,25.38651466
+"72","Acer rubrum","Twelve-species",-0.925972882,25.59153557
+"73","Quercus ellipsoidalis","Twelve-species",15.22763704,25.42921829
+"74","Quercus ellipsoidalis","Twelve-species",15.7319059,25.48689651
+"75","Quercus ellipsoidalis","Twelve-species",16.33189461,25.43613052
+"76","Quercus ellipsoidalis","Twelve-species",14.21983999,25.35546494
+"77","Quercus ellipsoidalis","Twelve-species",8.36431636,25.34877586
+"78","Quercus ellipsoidalis","Twelve-species",4.108442636,25.50864029
+"79","Quercus ellipsoidalis","Twelve-species",1.318435002,25.59544182
+"80","Quercus ellipsoidalis","Twelve-species",-0.623062986,25.66203308
+"81","Quercus ellipsoidalis","Twelve-species",-2.159446566,25.74858475
+"82","Acer rubrum","Shaded biculture",9.714500324,24.63050461
+"83","Acer rubrum","Shaded biculture",9.298300177,24.5164032
+"84","Acer rubrum","Shaded biculture",8.463946688,24.32193565
+"85","Acer rubrum","Shaded biculture",6.882822669,24.2203598
+"86","Acer rubrum","Shaded biculture",4.250815572,24.20153427
+"87","Acer rubrum","Shaded biculture",2.220758262,24.23049545
+"88","Acer rubrum","Shaded biculture",0.318649634,24.25828171
+"89","Acer rubrum","Shaded biculture",-0.805698363,24.31189728
+"90","Acer rubrum","Shaded biculture",8.237908602,25.84666824
+"91","Acer rubrum","Shaded biculture",6.931129836,25.77213478
+"92","Acer rubrum","Shaded biculture",7.09824993,25.66400337
+"93","Acer rubrum","Shaded biculture",6.496875259,25.50695229
+"94","Acer rubrum","Shaded biculture",5.613468018,25.29244804
+"95","Acer rubrum","Shaded biculture",3.519499073,25.2902565
+"96","Acer rubrum","Shaded biculture",1.592157308,25.31895638
+"97","Acer rubrum","Shaded biculture",0.031870611,25.38651466
+"98","Acer rubrum","Shaded biculture",-0.925972882,25.59153557
+"99","Tilia americana","Shaded biculture",19.99293296,27.90703392
+"100","Tilia americana","Shaded biculture",19.85476628,27.10189438
+"101","Tilia americana","Shaded biculture",18.33607646,26.32055664
+"102","Tilia americana","Shaded biculture",15.78700772,25.5231266
+"103","Tilia americana","Shaded biculture",9.512258043,24.95582008
+"104","Tilia americana","Shaded biculture",4.026312169,24.81512833
+"105","Tilia americana","Shaded biculture",2.835687796,24.73535919
+"106","Tilia americana","Shaded biculture",0.139537869,24.63313484
+"107","Tilia americana","Shaded biculture",-2.011729602,24.49257469
+"108","Tilia americana","Twelve-species",12.41962669,27.05487633
+"109","Tilia americana","Twelve-species",11.94719914,26.82276726
+"110","Tilia americana","Twelve-species",10.40181861,26.68787956
+"111","Tilia americana","Twelve-species",10.72486652,26.55216408
+"112","Tilia americana","Twelve-species",7.541289341,26.34993935
+"113","Tilia americana","Twelve-species",4.504992295,26.14344025
+"114","Tilia americana","Twelve-species",2.393270007,26.13358688
+"115","Tilia americana","Twelve-species",0.460349932,26.08690262
+"116","Quercus ellipsoidalis","Monoculture",20.0054912,26.87235641
+"117","Quercus ellipsoidalis","Monoculture",18.67979536,26.77053452
+"118","Quercus ellipsoidalis","Monoculture",17.31023775,26.65224648
+"119","Quercus ellipsoidalis","Monoculture",13.57694214,26.46292114
+"120","Quercus ellipsoidalis","Monoculture",6.56814613,26.33751297
+"121","Quercus ellipsoidalis","Monoculture",2.881765788,26.37702942
+"122","Quercus ellipsoidalis","Monoculture",0.577288161,26.42046928
+"123","Quercus ellipsoidalis","Monoculture",-1.009509604,26.44111443
+"124","Quercus ellipsoidalis","Monoculture",-2.374687778,26.41215706
+"125","Tilia americana","Monoculture",7.362007845,27.51987648
+"126","Tilia americana","Monoculture",7.149806437,27.32263374
+"127","Tilia americana","Monoculture",7.035121509,27.16611862
+"128","Tilia americana","Monoculture",6.685046106,27.06695175
+"129","Tilia americana","Monoculture",5.177151545,26.91137505
+"130","Tilia americana","Monoculture",3.30844619,27.07890511
+"131","Tilia americana","Monoculture",1.585381285,27.07637787
+"132","Tilia americana","Monoculture",0.494394101,27.07896423
+"133","Tilia americana","Monoculture",-1.168861313,26.8505497
+"134","Tilia americana","Twelve-species",16.77199198,29.5015583
+"135","Tilia americana","Twelve-species",16.81676156,28.5729847
+"136","Tilia americana","Twelve-species",16.2468761,27.62797546
+"137","Tilia americana","Twelve-species",14.83755732,26.71466255
+"138","Tilia americana","Twelve-species",8.059084105,26.15849304
+"139","Tilia americana","Twelve-species",4.815842062,25.99050522
+"140","Tilia americana","Twelve-species",2.200514962,25.91542435
+"141","Tilia americana","Twelve-species",0.05408639,25.92199707
+"142","Tilia americana","Twelve-species",-1.069401083,26.03373528
+"143","Tilia americana","Monoculture",18.48628964,28.20540047
+"144","Tilia americana","Monoculture",18.06750206,27.53353691
+"145","Tilia americana","Monoculture",17.5613749,26.82927132
+"146","Tilia americana","Monoculture",15.31114759,26.04767609
+"147","Tilia americana","Monoculture",8.990910925,25.71596527
+"148","Tilia americana","Monoculture",4.63461444,25.66791153
+"149","Tilia americana","Monoculture",2.280450652,25.5830822
+"150","Tilia americana","Monoculture",0.270385789,25.4927845
+"151","Tilia americana","Monoculture",-1.131743077,25.35441208
+"152","Tilia americana","Monoculture",12.23740634,28.62830353
+"153","Tilia americana","Monoculture",11.56536211,27.96033096
+"154","Tilia americana","Monoculture",10.96604368,27.32184792
+"155","Tilia americana","Monoculture",9.992328491,26.77749634
+"156","Tilia americana","Monoculture",6.590367315,26.16322708
+"157","Tilia americana","Monoculture",3.305193045,26.02651024
+"158","Tilia americana","Monoculture",1.652889634,25.96285248
+"159","Tilia americana","Monoculture",-0.105762505,25.9721756
+"160","Tilia americana","Monoculture",-1.339803686,25.99930191
+"161","Quercus ellipsoidalis","Shaded biculture",13.47002421,27.54089928
+"162","Quercus ellipsoidalis","Shaded biculture",13.69236973,27.34776115
+"163","Quercus ellipsoidalis","Shaded biculture",13.42424922,27.14661217
+"164","Quercus ellipsoidalis","Shaded biculture",12.0792117,26.99612999
+"165","Quercus ellipsoidalis","Shaded biculture",8.596603273,26.98030663
+"166","Quercus ellipsoidalis","Shaded biculture",3.550205988,26.97382736
+"167","Quercus ellipsoidalis","Shaded biculture",1.296804565,26.87511253
+"168","Quercus ellipsoidalis","Shaded biculture",-0.863474197,26.91652298
+"169","Quercus ellipsoidalis","Shaded biculture",-1.551326667,26.90881348
+"170","Quercus ellipsoidalis","Monoculture",17.14068682,28.85290909
+"171","Quercus ellipsoidalis","Monoculture",16.82118836,28.92502022
+"172","Quercus ellipsoidalis","Monoculture",11.83109771,29.08933449
+"173","Quercus ellipsoidalis","Monoculture",5.366619364,28.72613716
+"174","Quercus ellipsoidalis","Monoculture",2.091573193,28.69993019
+"175","Quercus ellipsoidalis","Monoculture",0.574867394,28.64876556
+"176","Quercus ellipsoidalis","Monoculture",-1.042618215,28.60770035
+"177","Quercus ellipsoidalis","Monoculture",-1.590427521,28.55736542
+"178","Tilia americana","Shaded biculture",14.5916633,27.32720566
+"179","Tilia americana","Shaded biculture",13.90488134,27.16428947
+"180","Tilia americana","Shaded biculture",13.3686749,27.01014709
+"181","Tilia americana","Shaded biculture",11.55270126,26.84400558
+"182","Tilia americana","Shaded biculture",7.420520901,26.84858704
+"183","Tilia americana","Shaded biculture",3.804274044,26.90375328
+"184","Tilia americana","Shaded biculture",1.809944292,26.87910843
+"185","Tilia americana","Shaded biculture",-0.32111569,26.88813782
+"186","Tilia americana","Shaded biculture",-1.28328241,26.88744354
+"187","Quercus ellipsoidalis","Monoculture",17,31.19
+"188","Quercus ellipsoidalis","Monoculture",15.7,30.44
+"189","Quercus ellipsoidalis","Monoculture",16.8,29.59
+"190","Quercus ellipsoidalis","Monoculture",14.3,28.66
+"191","Quercus ellipsoidalis","Monoculture",7.36,28.12
+"192","Quercus ellipsoidalis","Monoculture",3.03,28.17
+"193","Quercus ellipsoidalis","Monoculture",0.564,28.19
+"194","Quercus ellipsoidalis","Monoculture",-0.437,28.29
+"195","Quercus ellipsoidalis","Monoculture",-1.29,28.36
+"196","Quercus ellipsoidalis","Twelve-species",16.8,30.7
+"197","Quercus ellipsoidalis","Twelve-species",15.8,30.38
+"198","Quercus ellipsoidalis","Twelve-species",15.5,29.61
+"199","Quercus ellipsoidalis","Twelve-species",14.1,28.8
+"200","Quercus ellipsoidalis","Twelve-species",7.3,28.26
+"201","Quercus ellipsoidalis","Twelve-species",3.61,28.14
+"202","Quercus ellipsoidalis","Twelve-species",0.719,28.1
+"203","Quercus ellipsoidalis","Twelve-species",-0.863,28.15
+"204","Quercus ellipsoidalis","Twelve-species",-1.29,28.2
+"205","Tilia americana","Monoculture",12,30.22
+"206","Tilia americana","Monoculture",11.4,29.67
+"207","Tilia americana","Monoculture",11.3,28.99
+"208","Tilia americana","Monoculture",10.3,28.13
+"209","Tilia americana","Monoculture",6.38,27.65
+"210","Tilia americana","Monoculture",3.13,27.55
+"211","Tilia americana","Monoculture",1.54,27.6
+"212","Tilia americana","Monoculture",0.552,27.71
+"213","Tilia americana","Monoculture",-0.721,27.74
+"214","Betula papyrifera","Monoculture",23.1,28.93
+"215","Betula papyrifera","Monoculture",22.7,27.84
+"216","Betula papyrifera","Monoculture",20.8,27.27
+"217","Betula papyrifera","Monoculture",17.1,26.65
+"218","Betula papyrifera","Monoculture",8.28,25.95
+"219","Betula papyrifera","Monoculture",3.74,25.84
+"220","Betula papyrifera","Monoculture",0.939,25.87
+"221","Betula papyrifera","Monoculture",-0.378,26
+"222","Betula papyrifera","Monoculture",-1.94,26.05
+"223","Betula papyrifera","Monoculture",21.5,29.32
+"224","Betula papyrifera","Monoculture",21.6,28.31
+"225","Betula papyrifera","Monoculture",21.7,27.48
+"226","Betula papyrifera","Monoculture",18.1,26.68
+"227","Betula papyrifera","Monoculture",8.98,26.25
+"228","Betula papyrifera","Monoculture",4.5,26.06
+"229","Betula papyrifera","Monoculture",1.13,25.98
+"230","Betula papyrifera","Monoculture",0.0463,25.94
+"231","Betula papyrifera","Monoculture",-1.66,25.88
+"232","Betula papyrifera","Monoculture",22.9,29.38
+"233","Betula papyrifera","Monoculture",21.8,28.87
+"234","Betula papyrifera","Monoculture",19.9,28.05
+"235","Betula papyrifera","Monoculture",15.1,27.38
+"236","Betula papyrifera","Monoculture",6.73,27.05
+"237","Betula papyrifera","Monoculture",2.91,27.02
+"238","Betula papyrifera","Monoculture",-0.0704,27.02
+"239","Betula papyrifera","Monoculture",-1.25,26.6
+"240","Betula papyrifera","Monoculture",-1.81,26.48
+"241","Acer rubrum","Monoculture",7.22,28.73
+"242","Acer rubrum","Monoculture",7.15,28.12
+"243","Acer rubrum","Monoculture",6.77,27.27
+"244","Acer rubrum","Monoculture",6.69,26.39
+"245","Acer rubrum","Monoculture",4.42,25.8
+"246","Acer rubrum","Monoculture",2.76,25.55
+"247","Acer rubrum","Monoculture",1.47,25.29
+"248","Acer rubrum","Monoculture",-0.33,25.2
+"249","Acer rubrum","Monoculture",0.302,25.03
+"250","Acer rubrum","Monoculture",13,28.55
+"251","Acer rubrum","Monoculture",13.1,27.66
+"252","Acer rubrum","Monoculture",12.6,26.79
+"253","Acer rubrum","Monoculture",10.7,25.88
+"254","Acer rubrum","Monoculture",7.86,25.37
+"255","Acer rubrum","Monoculture",3.99,25.24
+"256","Acer rubrum","Monoculture",1.82,25.19
+"257","Acer rubrum","Monoculture",0.224,25.15
+"258","Acer rubrum","Monoculture",-1.01,25.15
+"259","Acer rubrum","Shaded biculture",5.2,28.29
+"260","Acer rubrum","Shaded biculture",5.44,27.46
+"261","Acer rubrum","Shaded biculture",5.51,26.34
+"262","Acer rubrum","Shaded biculture",5.26,25.08
+"263","Acer rubrum","Shaded biculture",4.75,24.52
+"264","Acer rubrum","Shaded biculture",3.65,24.42
+"265","Acer rubrum","Shaded biculture",1.94,24.34
+"266","Acer rubrum","Shaded biculture",1.02,24.3
+"267","Acer rubrum","Shaded biculture",-0.354,24.39
+"268","Acer rubrum","Shaded biculture",4.35,29.25
+"269","Acer rubrum","Shaded biculture",5.22,28.63
+"270","Acer rubrum","Shaded biculture",4.76,27.59
+"271","Acer rubrum","Shaded biculture",4.43,26.32
+"272","Acer rubrum","Shaded biculture",4.41,25.84
+"273","Acer rubrum","Shaded biculture",2.67,25.73
+"274","Acer rubrum","Shaded biculture",1.68,25.55
+"275","Acer rubrum","Shaded biculture",0.322,25.63
+"276","Acer rubrum","Shaded biculture",-0.611,25.57
+"277","Quercus ellipsoidalis","Shaded biculture",15,28
+"278","Quercus ellipsoidalis","Shaded biculture",14,27.54
+"279","Quercus ellipsoidalis","Shaded biculture",13.6,26.73
+"280","Quercus ellipsoidalis","Shaded biculture",12.4,26.03
+"281","Quercus ellipsoidalis","Shaded biculture",7.55,25.55
+"282","Quercus ellipsoidalis","Shaded biculture",3.26,25.75
+"283","Quercus ellipsoidalis","Shaded biculture",0.862,25.82
+"284","Quercus ellipsoidalis","Shaded biculture",-0.211,25.9
+"285","Quercus ellipsoidalis","Shaded biculture",-1.38,25.85
+"286","Quercus ellipsoidalis","Shaded biculture",18.1,27.3
+"287","Quercus ellipsoidalis","Shaded biculture",19.9,26.3
+"288","Quercus ellipsoidalis","Shaded biculture",19.8,25.24
+"289","Quercus ellipsoidalis","Shaded biculture",16.5,24.27
+"290","Quercus ellipsoidalis","Shaded biculture",8.23,23.84
+"291","Quercus ellipsoidalis","Shaded biculture",3.55,23.88
+"292","Quercus ellipsoidalis","Shaded biculture",1.21,23.84
+"293","Quercus ellipsoidalis","Shaded biculture",-0.259,24.03
+"294","Quercus ellipsoidalis","Shaded biculture",-1.4,23.99
+"295","Tilia americana","Twelve-species",22.9,28.1
+"296","Tilia americana","Twelve-species",22.3,27.3
+"297","Tilia americana","Twelve-species",21.2,26.43
+"298","Tilia americana","Twelve-species",17.7,25.43
+"299","Tilia americana","Twelve-species",9.44,24.91
+"300","Tilia americana","Twelve-species",4.06,24.76
+"301","Tilia americana","Twelve-species",1.91,24.75
+"302","Tilia americana","Twelve-species",0.388,24.79
+"303","Tilia americana","Twelve-species",-1.29,24.85
+"304","Tilia americana","Twelve-species",16.8,25.93
+"305","Tilia americana","Twelve-species",16.2,25.36
+"306","Tilia americana","Twelve-species",15.5,24.64
+"307","Tilia americana","Twelve-species",13.5,23.83
+"308","Tilia americana","Twelve-species",8.17,23.37
+"309","Tilia americana","Twelve-species",3.95,23.32
+"310","Tilia americana","Twelve-species",1.4,23.35
+"311","Tilia americana","Twelve-species",0.375,23.35
+"312","Tilia americana","Twelve-species",-0.99,23.33
+"313","Tilia americana","Shaded biculture",18.4,29.82
+"314","Tilia americana","Shaded biculture",17.4,29.26
+"315","Tilia americana","Shaded biculture",16.2,28.32
+"316","Tilia americana","Shaded biculture",14.4,27.38
+"317","Tilia americana","Shaded biculture",9.16,26.76
+"318","Tilia americana","Shaded biculture",4.14,26.23
+"319","Tilia americana","Shaded biculture",1.31,25.67
+"320","Tilia americana","Shaded biculture",-0.15,25.5
+"321","Tilia americana","Shaded biculture",-0.578,25.41
+"322","Tilia americana","Shaded biculture",17.2,28.4
+"323","Tilia americana","Shaded biculture",16.6,27.81
+"324","Tilia americana","Shaded biculture",15.8,27
+"325","Tilia americana","Shaded biculture",14.3,26.25
+"326","Tilia americana","Shaded biculture",8.26,25.79
+"327","Tilia americana","Shaded biculture",3.45,25.74
+"328","Tilia americana","Shaded biculture",1.68,25.74
+"329","Tilia americana","Shaded biculture",0.0828,25.78
+"330","Tilia americana","Shaded biculture",-1.39,25.86
+"331","Betula papyrifera","Twelve-species",20,29.03
+"332","Betula papyrifera","Twelve-species",19.9,28.39
+"333","Betula papyrifera","Twelve-species",19,27.54
+"334","Betula papyrifera","Twelve-species",17.5,26.74
+"335","Betula papyrifera","Twelve-species",10.1,26.28
+"336","Betula papyrifera","Twelve-species",3.88,26.02
+"337","Betula papyrifera","Twelve-species",1.76,25.86
+"338","Betula papyrifera","Twelve-species",0.276,25.88
+"339","Betula papyrifera","Twelve-species",-1.16,25.83
+"340","Betula papyrifera","Twelve-species",22.7,28.86
+"341","Betula papyrifera","Twelve-species",21.6,28.37
+"342","Betula papyrifera","Twelve-species",21,27.56
+"343","Betula papyrifera","Twelve-species",18.3,26.84
+"344","Betula papyrifera","Twelve-species",9.71,26.36
+"345","Betula papyrifera","Twelve-species",4.74,26.22
+"346","Betula papyrifera","Twelve-species",1.69,26.1
+"347","Betula papyrifera","Twelve-species",0.236,25.93
+"348","Betula papyrifera","Twelve-species",-1.27,25.87
+"349","Tilia americana","Twelve-species",15.3,29.72
+"350","Tilia americana","Twelve-species",14.8,28.93
+"351","Tilia americana","Twelve-species",14.4,28.13
+"352","Tilia americana","Twelve-species",12.4,27.18
+"353","Tilia americana","Twelve-species",7.77,26.68
+"354","Tilia americana","Twelve-species",3.36,26.56
+"355","Tilia americana","Twelve-species",1.29,26.41
+"356","Tilia americana","Twelve-species",-0.33,26.4
+"357","Tilia americana","Twelve-species",-0.727,26.22
+"358","Betula papyrifera","Twelve-species",20.4,29.87
+"359","Betula papyrifera","Twelve-species",19.9,29.32
+"360","Betula papyrifera","Twelve-species",19.1,28.67
+"361","Betula papyrifera","Twelve-species",15.4,27.9
+"362","Betula papyrifera","Twelve-species",7.64,27.17
+"363","Betula papyrifera","Twelve-species",3.31,27
+"364","Betula papyrifera","Twelve-species",0.781,26.6
+"365","Betula papyrifera","Twelve-species",-1.22,26.4
+"366","Betula papyrifera","Twelve-species",-2.62,26.59
+"367","Acer rubrum","Monoculture",9.02,33.62
+"368","Acer rubrum","Monoculture",9.98,33.16
+"369","Acer rubrum","Monoculture",9.82,32.8
+"370","Acer rubrum","Monoculture",9.29,32.44
+"371","Acer rubrum","Monoculture",6.51,32.03
+"372","Acer rubrum","Monoculture",3.32,31.86
+"373","Acer rubrum","Monoculture",0.554,32.04
+"374","Acer rubrum","Monoculture",-0.656,31.86
+"375","Acer rubrum","Monoculture",-1.35,31.61
+"376","Quercus ellipsoidalis","Shaded biculture",23.3,28.51
+"377","Quercus ellipsoidalis","Shaded biculture",23.3,27.67
+"378","Quercus ellipsoidalis","Shaded biculture",23.1,26.72
+"379","Quercus ellipsoidalis","Shaded biculture",19.7,25.75
+"380","Quercus ellipsoidalis","Shaded biculture",10.3,25.27
+"381","Quercus ellipsoidalis","Shaded biculture",4.43,25.22
+"382","Quercus ellipsoidalis","Shaded biculture",1.43,25.22
+"383","Quercus ellipsoidalis","Shaded biculture",0.163,25.22
+"384","Quercus ellipsoidalis","Shaded biculture",-0.921,25.21
+"385","Acer rubrum","Twelve-species",11.3,28.98
+"386","Acer rubrum","Twelve-species",11.8,28.24
+"387","Acer rubrum","Twelve-species",11.8,27.42
+"388","Acer rubrum","Twelve-species",11.3,26.63
+"389","Acer rubrum","Twelve-species",7.85,26.19
+"390","Acer rubrum","Twelve-species",3.88,26.23
+"391","Acer rubrum","Twelve-species",1.52,26.43
+"392","Acer rubrum","Twelve-species",0.633,26.54
+"393","Acer rubrum","Twelve-species",-1.11,26.57
+"394","Quercus ellipsoidalis","Twelve-species",17,27.8
+"395","Quercus ellipsoidalis","Twelve-species",17.5,27.03
+"396","Quercus ellipsoidalis","Twelve-species",17.8,26.02
+"397","Quercus ellipsoidalis","Twelve-species",15.5,25.12
+"398","Quercus ellipsoidalis","Twelve-species",9.02,24.63
+"399","Quercus ellipsoidalis","Twelve-species",4.29,24.56
+"400","Quercus ellipsoidalis","Twelve-species",1.71,24.51
+"401","Quercus ellipsoidalis","Twelve-species",0.529,24.58
+"402","Quercus ellipsoidalis","Twelve-species",-1.74,24.6
+"403","Acer rubrum","Shaded biculture",7.05,27.91
+"404","Acer rubrum","Shaded biculture",6.63,27.12
+"405","Acer rubrum","Shaded biculture",6.94,26.16
+"406","Acer rubrum","Shaded biculture",6.75,25.12
+"407","Acer rubrum","Shaded biculture",6.01,24.58
+"408","Acer rubrum","Shaded biculture",4.59,24.42
+"409","Acer rubrum","Shaded biculture",2.05,24.43
+"410","Acer rubrum","Shaded biculture",1.09,24.42
+"411","Acer rubrum","Shaded biculture",-0.206,24.48
+"412","Tilia americana","Shaded biculture",16.8,29.54
+"413","Tilia americana","Shaded biculture",16.1,28.91
+"414","Tilia americana","Shaded biculture",15.5,27.97
+"415","Tilia americana","Shaded biculture",14.2,26.91
+"416","Tilia americana","Shaded biculture",8.34,26.21
+"417","Tilia americana","Shaded biculture",4.01,25.93
+"418","Tilia americana","Shaded biculture",1.3,25.72
+"419","Tilia americana","Shaded biculture",-0.0154,25.74
+"420","Tilia americana","Shaded biculture",-0.965,25.77
+"421","Betula papyrifera","Shaded biculture",19.2,30.38
+"422","Betula papyrifera","Shaded biculture",19.2,29.62
+"423","Betula papyrifera","Shaded biculture",18.4,28.78
+"424","Betula papyrifera","Shaded biculture",14,27.72
+"425","Betula papyrifera","Shaded biculture",7.4,27.09
+"426","Betula papyrifera","Shaded biculture",2.67,26.87
+"427","Betula papyrifera","Shaded biculture",0.574,26.84
+"428","Betula papyrifera","Shaded biculture",-1.06,26.79
+"429","Betula papyrifera","Shaded biculture",-1.98,26.79
+"430","Betula papyrifera","Shaded biculture",19.6,28.68
+"431","Betula papyrifera","Shaded biculture",19.8,28.01
+"432","Betula papyrifera","Shaded biculture",19.2,26.99
+"433","Betula papyrifera","Shaded biculture",16.3,25.85
+"434","Betula papyrifera","Shaded biculture",8.3,25.22
+"435","Betula papyrifera","Shaded biculture",3.44,24.91
+"436","Betula papyrifera","Shaded biculture",1.75,24.78
+"437","Betula papyrifera","Shaded biculture",-0.4,24.74
+"438","Betula papyrifera","Shaded biculture",-1.69,24.74
+"439","Betula papyrifera","Shaded biculture",24,29.15
+"440","Betula papyrifera","Shaded biculture",24.4,28.58
+"441","Betula papyrifera","Shaded biculture",23,27.76
+"442","Betula papyrifera","Shaded biculture",18.9,27.29
+"443","Betula papyrifera","Shaded biculture",9.01,27.01
+"444","Betula papyrifera","Shaded biculture",3.47,27.09
+"445","Betula papyrifera","Shaded biculture",1.1,27.06
+"446","Betula papyrifera","Shaded biculture",-1.18,27.06
+"447","Betula papyrifera","Shaded biculture",-1.87,26.51
+"448","Quercus ellipsoidalis","Monoculture",16.7,30.46
+"449","Quercus ellipsoidalis","Monoculture",14.9,30.02
+"450","Quercus ellipsoidalis","Monoculture",15,29.19
+"451","Quercus ellipsoidalis","Monoculture",13,28.26
+"452","Quercus ellipsoidalis","Monoculture",5.99,27.87
+"453","Quercus ellipsoidalis","Monoculture",1.99,27.93
+"454","Quercus ellipsoidalis","Monoculture",1.04,27.79
+"455","Quercus ellipsoidalis","Monoculture",-0.944,27.74
+"456","Quercus ellipsoidalis","Monoculture",-1.87,27.68
+"457","Tilia americana","Monoculture",11.1,29.92
+"458","Tilia americana","Monoculture",11.6,29.26
+"459","Tilia americana","Monoculture",11.7,28.45
+"460","Tilia americana","Monoculture",11.1,27.54
+"461","Tilia americana","Monoculture",7.88,27.05
+"462","Tilia americana","Monoculture",4.46,26.97
+"463","Tilia americana","Monoculture",1.54,26.88
+"464","Tilia americana","Monoculture",-0.00677,26.87
+"465","Tilia americana","Monoculture",-0.504,26.86
+"466","Tilia americana","Twelve-species",12.1,28.52
+"467","Tilia americana","Twelve-species",12.5,28.18
+"468","Tilia americana","Twelve-species",14,27.71
+"469","Tilia americana","Twelve-species",12,27.14
+"470","Tilia americana","Twelve-species",7.99,26.83
+"471","Tilia americana","Twelve-species",3.94,26.73
+"472","Tilia americana","Twelve-species",2.42,26.65
+"473","Tilia americana","Twelve-species",0.642,26.61
+"474","Tilia americana","Twelve-species",-0.726,26.58
+"475","Betula papyrifera","Shaded biculture",22.1,28.33
+"476","Betula papyrifera","Shaded biculture",21.8,27.66
+"477","Betula papyrifera","Shaded biculture",20.3,26.77
+"478","Betula papyrifera","Shaded biculture",17.2,25.91
+"479","Betula papyrifera","Shaded biculture",8.94,25.41
+"480","Betula papyrifera","Shaded biculture",3.56,25.18
+"481","Betula papyrifera","Shaded biculture",1.68,25.05
+"482","Betula papyrifera","Shaded biculture",0.211,25.02
+"483","Betula papyrifera","Shaded biculture",-1.18,24.97
+"484","Betula papyrifera","Shaded biculture",17.9,28.99
+"485","Betula papyrifera","Shaded biculture",17.9,28.56
+"486","Betula papyrifera","Shaded biculture",17.2,27.84
+"487","Betula papyrifera","Shaded biculture",15,27
+"488","Betula papyrifera","Shaded biculture",7.97,26.54
+"489","Betula papyrifera","Shaded biculture",3.25,26.31
+"490","Betula papyrifera","Shaded biculture",1.14,26.21
+"491","Betula papyrifera","Shaded biculture",-0.805,26.46
+"492","Betula papyrifera","Shaded biculture",-1.86,26.65
+"493","Betula papyrifera","Shaded biculture",19.5,27.97
+"494","Betula papyrifera","Shaded biculture",19.7,27.53
+"495","Betula papyrifera","Shaded biculture",19.5,27.18
+"496","Betula papyrifera","Shaded biculture",16.2,26.71
+"497","Betula papyrifera","Shaded biculture",7.54,26.26
+"498","Betula papyrifera","Shaded biculture",2.71,25.89
+"499","Betula papyrifera","Shaded biculture",0.401,25.77
+"500","Betula papyrifera","Shaded biculture",-1.6,26.14
+"501","Betula papyrifera","Shaded biculture",-2.08,26.46
+"502","Acer rubrum","Twelve-species",8.59,28.49
+"503","Acer rubrum","Twelve-species",9.01,27.54
+"504","Acer rubrum","Twelve-species",9.18,26.73
+"505","Acer rubrum","Twelve-species",8.7,25.75
+"506","Acer rubrum","Twelve-species",7.09,25.13
+"507","Acer rubrum","Twelve-species",4.33,25.17
+"508","Acer rubrum","Twelve-species",1.84,25.22
+"509","Acer rubrum","Twelve-species",0.535,25.18
+"510","Acer rubrum","Twelve-species",-0.692,25.22
+"511","Betula papyrifera","Twelve-species",25.4,30.15
+"512","Betula papyrifera","Twelve-species",24.4,29.12
+"513","Betula papyrifera","Twelve-species",23.3,28.37
+"514","Betula papyrifera","Twelve-species",18.3,27.76
+"515","Betula papyrifera","Twelve-species",8.8,27.4
+"516","Betula papyrifera","Twelve-species",3.76,26.92
+"517","Betula papyrifera","Twelve-species",1.29,26.65
+"518","Betula papyrifera","Twelve-species",-0.228,26.54
+"519","Betula papyrifera","Twelve-species",-1.7,26.62
+"520","Betula papyrifera","Twelve-species",23.3,30.41
+"521","Betula papyrifera","Twelve-species",23.8,29.93
+"522","Betula papyrifera","Twelve-species",22.3,29.12
+"523","Betula papyrifera","Twelve-species",19.2,28.26
+"524","Betula papyrifera","Twelve-species",8.15,27.68
+"525","Betula papyrifera","Twelve-species",3.32,27.64
+"526","Betula papyrifera","Twelve-species",0.876,27.48
+"527","Betula papyrifera","Twelve-species",-0.12,27.52
+"528","Betula papyrifera","Twelve-species",-1.52,27.66
+"529","Betula papyrifera","Monoculture",24.2,28.97
+"530","Betula papyrifera","Monoculture",22.9,28.43
+"531","Betula papyrifera","Monoculture",20.1,27.93
+"532","Betula papyrifera","Monoculture",17.2,27.12
+"533","Betula papyrifera","Monoculture",9.11,26.56
+"534","Betula papyrifera","Monoculture",4.61,26.45
+"535","Betula papyrifera","Monoculture",1.44,26.33
+"536","Betula papyrifera","Monoculture",-0.00978,26.24
+"537","Betula papyrifera","Monoculture",-0.528,26.24
+"538","Betula papyrifera","Monoculture",24.9,29.59
+"539","Betula papyrifera","Monoculture",25.3,29.41
+"540","Betula papyrifera","Monoculture",23.9,29.16
+"541","Betula papyrifera","Monoculture",19.9,28.58
+"542","Betula papyrifera","Monoculture",8.82,27.54
+"543","Betula papyrifera","Monoculture",4.09,26.97
+"544","Betula papyrifera","Monoculture",0.749,27.18
+"545","Betula papyrifera","Monoculture",-0.781,27.03
+"546","Betula papyrifera","Monoculture",-2.22,27.18
+"547","Quercus ellipsoidalis","Twelve-species",23.2,29.04
+"548","Quercus ellipsoidalis","Twelve-species",22.6,28.38
+"549","Quercus ellipsoidalis","Twelve-species",22.1,27.57
+"550","Quercus ellipsoidalis","Twelve-species",18.1,26.67
+"551","Quercus ellipsoidalis","Twelve-species",9.77,26.06
+"552","Quercus ellipsoidalis","Twelve-species",4.73,25.88
+"553","Quercus ellipsoidalis","Twelve-species",1.84,25.75
+"554","Quercus ellipsoidalis","Twelve-species",0.385,25.9
+"555","Quercus ellipsoidalis","Twelve-species",-0.687,26.03
+"556","Quercus ellipsoidalis","Twelve-species",12.6,32.18
+"557","Quercus ellipsoidalis","Twelve-species",12.8,31.07
+"558","Quercus ellipsoidalis","Twelve-species",11.5,30.19
+"559","Quercus ellipsoidalis","Twelve-species",11.3,29.07
+"560","Quercus ellipsoidalis","Twelve-species",8.26,28.48
+"561","Quercus ellipsoidalis","Twelve-species",5,28.43
+"562","Quercus ellipsoidalis","Twelve-species",2.74,28.48
+"563","Quercus ellipsoidalis","Twelve-species",1.05,28.52
+"564","Quercus ellipsoidalis","Twelve-species",-0.14,28.48
+"565","Quercus ellipsoidalis","Shaded biculture",15.2,30.52
+"566","Quercus ellipsoidalis","Shaded biculture",14.9,29.5
+"567","Quercus ellipsoidalis","Shaded biculture",14,28.65
+"568","Quercus ellipsoidalis","Shaded biculture",11.7,27.86
+"569","Quercus ellipsoidalis","Shaded biculture",7.21,27.58
+"570","Quercus ellipsoidalis","Shaded biculture",3.68,27.66
+"571","Quercus ellipsoidalis","Shaded biculture",1.61,27.64
+"572","Quercus ellipsoidalis","Shaded biculture",-0.086,27.65
+"573","Quercus ellipsoidalis","Shaded biculture",-0.969,27.69
+"574","Quercus ellipsoidalis","Monoculture",19.2,31.15
+"575","Quercus ellipsoidalis","Monoculture",18.3,30.35
+"576","Quercus ellipsoidalis","Monoculture",18.2,29.44
+"577","Quercus ellipsoidalis","Monoculture",14.6,28.66
+"578","Quercus ellipsoidalis","Monoculture",7.5,28.23
+"579","Quercus ellipsoidalis","Monoculture",2.92,28.14
+"580","Quercus ellipsoidalis","Monoculture",0.557,28.09
+"581","Quercus ellipsoidalis","Monoculture",-0.733,28.16
+"582","Quercus ellipsoidalis","Monoculture",-1.59,28.38
+"583","Tilia americana","Shaded biculture",22.2,28.93
+"584","Tilia americana","Shaded biculture",21.6,28.05
+"585","Tilia americana","Shaded biculture",20.4,27.22
+"586","Tilia americana","Shaded biculture",16.4,26.45
+"587","Tilia americana","Shaded biculture",8.75,26.03
+"588","Tilia americana","Shaded biculture",4.53,25.86
+"589","Tilia americana","Shaded biculture",1.83,25.79
+"590","Tilia americana","Shaded biculture",0.243,25.82
+"591","Tilia americana","Shaded biculture",-1.23,25.99
+"592","Acer rubrum","Monoculture",11,29.85
+"593","Acer rubrum","Monoculture",11.2,29.36
+"594","Acer rubrum","Monoculture",11,28.47
+"595","Acer rubrum","Monoculture",10.7,27.38
+"596","Acer rubrum","Monoculture",6.84,26.8
+"597","Acer rubrum","Monoculture",3.78,26.73
+"598","Acer rubrum","Monoculture",1.16,26.83
+"599","Acer rubrum","Monoculture",0.117,26.93
+"600","Acer rubrum","Monoculture",-1.37,26.9
+"601","Acer rubrum","Monoculture",4.18,27.57
+"602","Acer rubrum","Monoculture",3.55,26.65
+"603","Acer rubrum","Monoculture",3.79,26.06
+"604","Acer rubrum","Monoculture",2.16,26.06
+"605","Acer rubrum","Monoculture",1.14,26
+"606","Acer rubrum","Monoculture",-0.103,26.15
+"607","Acer rubrum","Monoculture",-1.13,26.27
+"608","Acer rubrum","Shaded biculture",8.13,29.83
+"609","Acer rubrum","Shaded biculture",9.19,29.02
+"610","Acer rubrum","Shaded biculture",9.76,27.99
+"611","Acer rubrum","Shaded biculture",9.52,27.16
+"612","Acer rubrum","Shaded biculture",6.63,26.7
+"613","Acer rubrum","Shaded biculture",3.69,26.56
+"614","Acer rubrum","Shaded biculture",1.84,26.58
+"615","Acer rubrum","Shaded biculture",-0.0292,26.57
+"616","Acer rubrum","Shaded biculture",-1.29,26.61
+"617","Acer rubrum","Shaded biculture",6.86,30.83
+"618","Acer rubrum","Shaded biculture",7.71,29.8
+"619","Acer rubrum","Shaded biculture",7.27,28.56
+"620","Acer rubrum","Shaded biculture",6.93,27.21
+"621","Acer rubrum","Shaded biculture",5.98,26.56
+"622","Acer rubrum","Shaded biculture",3.8,26.28
+"623","Acer rubrum","Shaded biculture",1.92,26.09
+"624","Acer rubrum","Shaded biculture",0.806,25.97
+"625","Acer rubrum","Shaded biculture",-0.938,25.91
+"626","Acer rubrum","Twelve-species",10.7,30.63
+"627","Acer rubrum","Twelve-species",10.6,29.31
+"628","Acer rubrum","Twelve-species",11.5,28.03
+"629","Acer rubrum","Twelve-species",11.6,27.08
+"630","Acer rubrum","Twelve-species",8.44,26.52
+"631","Acer rubrum","Twelve-species",4.52,26.33
+"632","Acer rubrum","Twelve-species",2.1,26.17
+"633","Acer rubrum","Twelve-species",0.944,26.24
+"634","Acer rubrum","Twelve-species",-0.993,26.32
+"635","Acer rubrum","Twelve-species",8.49,30.26
+"636","Acer rubrum","Twelve-species",8.18,29.63
+"637","Acer rubrum","Twelve-species",8.56,28.7
+"638","Acer rubrum","Twelve-species",7.91,27.81
+"639","Acer rubrum","Twelve-species",7.56,27.29
+"640","Acer rubrum","Twelve-species",4.1,27.1
+"641","Acer rubrum","Twelve-species",1.89,27.11
+"642","Acer rubrum","Twelve-species",0.494,27.15
+"643","Acer rubrum","Twelve-species",-0.76,27.19
