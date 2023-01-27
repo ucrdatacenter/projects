@@ -1,0 +1,57 @@
+common_name	Family	Size_cm	Weight_g
+Brown Teal	Anatidae	48	650
+Caspian Tern	Laridae	50	700
+Little Spotted Kiwi	Apterygidae	30	1150
+Long-tailed Koel	Cuculidae	40	125
+New Zealand Grebe	Podicipedidae	29	250
+New Zealand Storm-Petrel	Oceanitidae	18	35
+North Island Kokako	Callaeidae	38	233
+Pacific Black Duck	Anatidae	55	1050
+Parkinson's Petrel	Procellariidae	46	700
+Shore Plover	Charadriidae	20	61
+South Island Takahe	Rallidae	50	2750
+Spotted Shag	Phalacrocoracidae	69	950
+Stitchbird	Notiomystidae	18	37
+Tomtit	Petroicidae	13	11
+Wrybill	Charadriidae	20	55
+Blue Duck	Anatidae	53	900
+Red-breasted Dotterel	Charadriidae	25	146
+Antarctic Tern	Laridae	36	140
+Black-fronted Tern	Laridae	28	95
+Black Stilt	Recurvirostridae	40	220
+Great Crested Grebe	Podicipedidae	55	1100
+Great Spotted Kiwi	Apterygidae	45	2600
+Hutton's Shearwater	Procellariidae	36	350
+Kea	Strigopidae	46	1000
+Light-mantled Albatross	Diomedeidae	85	2950
+Malherbe's Parakeet	Psittaculidae	20	41
+New Zealand Falcon	Falconidae	45	475
+Royal Albatross	Diomedeidae	120	9000
+Salvin's Albatross	Diomedeidae	95	3900
+Stewart Island Shag	Phalacrocoracidae	60	2000
+Brown Skua	Stercorariidae	64	1850
+Chatham Island Pigeon	Columbidae	55	790
+Chatham Islands Parakeet	Psittaculidae	28	80
+Chatham Islands Shag	Phalacrocoracidae	63	2250
+Chatham Islands Snipe	Scolopacidae	20	80
+Chatham Oystercatcher	Haematopodidae	48	600
+Chatham Petrel	Procellariidae	30	200
+Chatham Robin	Petroicidae	15	23
+Magenta Petrel	Procellariidae	38	450
+Pitt Island Shag	Phalacrocoracidae	63	1000
+Australasian Bittern	Ardeidae	74	1150
+New Zealand King Shag	Phalacrocoracidae	76	2500
+White-bellied Storm Petrel	Oceanitidae	20	50
+Gray-headed Albatross	Diomedeidae	81	3100
+Great Egret	Ardeidae	93	950
+South Island Wren	Acanthisittidae	10	18
+Yellow-eyed Penguin	Spheniscidae	65	5000
+Auckland Islands Shag	Phalacrocoracidae	63	2000
+Auckland Islands Teal	Anatidae	45	435
+Campbell Islands Teal	Anatidae	43	355
+Fiordland Penguin	Spheniscidae	60	4000
+South Georgia Diving-Petrel	Procellariidae	20	150
+Southern Brown Kiwi	Apterygidae	45	2750
+Subantarctic Snipe	Scolopacidae	23	110
+Weka	Rallidae	55	915
+Okarito Brown Kiwi	Apterygidae	40	2250
