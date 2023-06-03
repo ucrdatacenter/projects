@@ -2,7 +2,7 @@
 library(tidyverse)
 
 # read data from the Data Center Github (originally downloaded form FRED)
-d <- read_csv("") %>%
+d <- read_csv("https://raw.githubusercontent.com/ucrdatacenter/projects/main/SSCECON207/2023h1/US2001data.csv") %>%
   # make sure all variables are treated as numbers
   mutate(across(-DATE, as.numeric))
 
