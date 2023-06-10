@@ -1,25 +1,27 @@
 library(tidyverse)
-library(patchwork)
 
-gdp <- read_csv("data/gdp_oecd.csv") %>%
+# get data from Github (originally from OECD)
+gdp <- read_csv("https://raw.githubusercontent.com/ucrdatacenter/projects/main/SSCECON207/2023h1/EU2009data/gdp_oecd.csv") %>%
   filter(MEASURE == "USD_CAP")
-unem <- read_csv("data/unem_oecd.csv") %>%
+unem <- read_csv("https://raw.githubusercontent.com/ucrdatacenter/projects/main/SSCECON207/2023h1/EU2009data/unem_oecd.csv") %>%
   filter(FREQUENCY == "A", SUBJECT == "TOT") %>%
   mutate(TIME = as.numeric(TIME))
-infl <- read_csv("data/infl_oecd.csv") %>%
+infl <- read_csv("https://raw.githubusercontent.com/ucrdatacenter/projects/main/SSCECON207/2023h1/EU2009data/infl_oecd.csv") %>%
   filter(FREQUENCY == "A", MEASURE == "AGRWTH", SUBJECT == "TOT") %>%
   mutate(TIME = as.numeric(TIME))
-irate <- read_csv("data/i_oecd.csv") %>%
+irate <- read_csv("https://raw.githubusercontent.com/ucrdatacenter/projects/main/SSCECON207/2023h1/EU2009data/i_oecd.csv") %>%
   filter(FREQUENCY == "A") %>%
   mutate(TIME = as.numeric(TIME))
-budg <- read_csv("data/budg_oecd.csv")
-debt <- read_csv("data/debt_oecd.csv")
+budg <- read_csv("https://raw.githubusercontent.com/ucrdatacenter/projects/main/SSCECON207/2023h1/EU2009data/budg_oecd.csv")
+debt <- read_csv("https://raw.githubusercontent.com/ucrdatacenter/projects/main/SSCECON207/2023h1/EU2009data/debt_oecd.csv")
 
+# list of countries for bar charts
 eu <- c("AUT", "BEL", "BGR", "CYP", "CZE", "DNK", "EST", "FIN", "FRA", "DEU",
         "GBR", "GRC", "HUN", "IRL", "ITA", "LVA", "LTU", "LUX", "MLT", "NLD",
         "POL", "PRT", "ROU", "SVK", "SVN", "ESP", "SWE", "OECDE", "EA19")
 
-p1 <- gdp %>%
+# average GDP per country
+gdp %>%
   filter(TIME %in% 1999:2007, LOCATION %in% eu) %>%
   arrange(TIME) %>%
   group_by(LOCATION) %>%
@@ -31,7 +33,8 @@ p1 <- gdp %>%
   theme_light() +
   theme(axis.text.x = element_text(angle = 90))
 
-p2 <- gdp %>%
+# Euro Area GDP
+gdp %>%
   filter(TIME %in% 1999:2007, LOCATION == "EA19") %>%
   mutate(growth = (Value-lag(Value))/lag(Value)*100) %>%
   ggplot(aes(TIME, growth)) +
@@ -41,9 +44,8 @@ p2 <- gdp %>%
   xlab("Year") + ylab("Euro Area GDP growth (%)") +
   theme_light()
 
-p1 + p2 + plot_layout(ncol = 1)
-
-p1 <- unem %>%
+# average unemployment rate per country
+unem %>%
   filter(TIME %in% 2000:2007, LOCATION %in% eu) %>%
   group_by(LOCATION) %>%
   summarize(Value = mean(Value, na.rm = TRUE)) %>%
@@ -53,7 +55,8 @@ p1 <- unem %>%
   theme_light() +
   theme(axis.text.x = element_text(angle = 90))
 
-p2 <- unem %>%
+# Euro Area unemployment rate
+unem %>%
   filter(TIME %in% 2000:2007, LOCATION == "EA19") %>%
   ggplot(aes(TIME, Value)) +
   geom_point() +
@@ -62,18 +65,18 @@ p2 <- unem %>%
   xlab("Year") + ylab("Euro Area unemployment rate (%)") +
   theme_light()
 
-p1 + p2 + plot_layout(ncol = 1)
-
+# average debt and budget deficit during crisis
 bind_rows(budg, debt) %>%
   filter(TIME %in% 2008:2009, LOCATION %in% eu) %>%
   mutate(INDICATOR = ifelse(INDICATOR == "GGDEBT", "Government debt", "Budget deficit")) %>%
   ggplot(aes(LOCATION, Value)) +
   geom_col() +
   facet_grid(~INDICATOR~TIME, scales = "free_y") +
-  xlab(NULL) + ylab("% of GDP in 2008") +
+  xlab(NULL) + ylab("% of GDP") +
   theme_bw() +
   theme(axis.text.x = element_text(angle = 90))
 
+# interest rate line chart
 irate %>%
   filter(TIME %in% 2000:2019, LOCATION == "EA19") %>%
   ggplot(aes(TIME, Value)) +
@@ -82,6 +85,7 @@ irate %>%
   xlab(NULL) + ylab("Euro Area interest rate (%)") +
   theme_light()
 
+# GDP & unemployment line charts
 bind_rows(gdp, unem) %>%
   filter(LOCATION == "EA19") %>%
   arrange(TIME) %>%
@@ -98,6 +102,7 @@ bind_rows(gdp, unem) %>%
   xlab(NULL) + ylab("Euro Area (%)") +
   theme_bw()
 
+# GDP & unemployment line chart per country
 bind_rows(gdp, unem) %>%
   filter(LOCATION %in% c("DEU", "ESP", "GRC", "IRL", "PRT")) %>%
   arrange(TIME) %>%
@@ -115,6 +120,7 @@ bind_rows(gdp, unem) %>%
   xlab(NULL) + ylab("%") +
   theme_bw()
 
+# Phillips curves
 bind_rows(infl, unem) %>%
   filter(LOCATION %in% c("GRC", "ESP", "IRL", "PRT"), TIME %in% 2000:2016) %>%
   select(LOCATION, INDICATOR, TIME, Value) %>%
