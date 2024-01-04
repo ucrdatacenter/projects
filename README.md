@@ -53,9 +53,10 @@ It goes without saying, but do not add any files containing confidential informa
 
 To ensure smooth collaboration in the repo:
 
-+ Make sure to always work with the latest version on your local drive (use "fetch origin" in Github Desktop before you start working).
-+ Regularly commit and push your changes to Github to avoid version clashes.
++ Fork the repo, and submit your changes to the main repo via pull requests (see the tutorial on Moodle on how to do that).
++ Make sure to always work with the latest version on your local drive (make sure that your fork has the latest changes, then use "fetch origin" in GitHub Desktop before you start working).
++ Regularly commit and push your changes to GitHub to avoid version clashes.
 + Use sensible commit messages.
-+ Do not upload large files to the repo if possible (keep in mind both Github's file size limits and the limits of collaborators' local drives).
-+ Make sure you're familiar with the Github and Github Desktop tutorials (TBA); if you encounter any issues, check those first.
++ Do not upload large files to the repo if possible (keep in mind both GitHub's file size limits and the limits of collaborators' local drives).
++ Make sure you're familiar with the GitHub and GitHub Desktop tutorials on Moodle; if you encounter any issues, check those first.
 + If you encounter issues you can't fix on your own, reach out to Tina.
