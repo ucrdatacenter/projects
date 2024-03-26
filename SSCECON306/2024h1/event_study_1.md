@@ -1,25 +1,37 @@
----
-title: "Event_study"
-output: html_document
-date: "2024-03-22"
----
+Event_study
+================
+2024-03-22
 
-When selecting the data i started with the data i have available for M&A.
-Because i needed a market variable i choose to look at the S&P500, so from the
-Acquisitions data i selected only the variable in the S&P500.
-Then when i knew what companies i need to look at i downloaded the needed stock data for them.
-Also a note, the M&A are only until 2014 so the stock data was downloaded already
-for the needed time frame
+When selecting the data i started with the data i have available for
+M&A. Because i needed a market variable i choose to look at the S&P500,
+so from the Acquisitions data i selected only the variable in the
+S&P500. Then when i knew what companies i need to look at i downloaded
+the needed stock data for them. Also a note, the M&A are only until 2014
+so the stock data was downloaded already for the needed time frame
 
-```{r Load libraries}
+``` r
 library(tidyverse)
+```
+
+    ## Warning: package 'ggplot2' was built under R version 4.3.3
+
+    ## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+    ## ✔ dplyr     1.1.3     ✔ readr     2.1.4
+    ## ✔ forcats   1.0.0     ✔ stringr   1.5.0
+    ## ✔ ggplot2   3.5.0     ✔ tibble    3.2.1
+    ## ✔ lubridate 1.9.2     ✔ tidyr     1.3.0
+    ## ✔ purrr     1.0.2     
+    ## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+    ## ✖ dplyr::filter() masks stats::filter()
+    ## ✖ dplyr::lag()    masks stats::lag()
+    ## ℹ Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
+
+``` r
 library(lubridate)
 library(ggplot2)
 ```
 
-
-```{r Import data sets}
-
+``` r
 # The company tickers were manually written for the S&P500 companies present in the
 # M&A data set for which stock prices are available
 
@@ -34,12 +46,14 @@ acquisitions <- read_csv("Data/Raw_data/Acquisitions.csv", show_col_types = FALS
   mutate(date = dmy(date)) |>
   filter(year(date) >= 1995) |> #data before that is very little so just filtered it out
   inner_join(company_tickers, acquisitions, by = "company_name") 
-
 ```
 
+    ## Warning: There was 1 warning in `mutate()`.
+    ## ℹ In argument: `date = dmy(date)`.
+    ## Caused by warning:
+    ## !  1 failed to parse.
 
-```{r Function for importing}
-
+``` r
 # Because the stock prices data does not have a variable to identify the company by
 # I decided to do a function that would take the name of the file (company ticker)
 # and put it as the observation in the data file as the ticker
@@ -61,13 +75,9 @@ stock_prices <- data.frame()
 for (file in files) {
   stock_prices <- bind_rows(stock_prices, get_observation(file))
 }
-
 ```
 
-
-```{r Data manipulation to get the final clean data set}
-
-
+``` r
 # clean stock price data and add company names
 stock_prices <- stock_prices |>
   rename(date = Date) |>
@@ -87,7 +97,7 @@ clean_data <- full_join(acquisitions, stock_prices, by = c("date", "ticker", "co
 
 
 # get the data for the market returns, use SP500
-market <- read_csv("data/raw_data/GSPC.csv", show_col_types = FALSE) |>
+market <- read_csv("Data/Raw_data/GSPC.csv", show_col_types = FALSE) |>
   select(Date, "Adj Close") |>
   rename(date = Date) |>
   rename(adj_close = "Adj Close") |>
@@ -100,26 +110,24 @@ clean_data <- clean_data |>
   inner_join(market, by = "date")
 
 # Save the data frame
-write.csv(clean_data, file = "C:/Uni/Internship/Event_Study_1/Data/clean_data.csv")
+write.csv(clean_data, file = "Data/clean_data.csv")
 # This is the data file with acquisitions and stock prices before any manipulations
-
-
 ```
 
+######################### Start the actual event study
 
-######################### Start the actual event study ######################### 
-
-
-```{r Clean data frame for study}
-
-
+``` r
 # To not mess with the clead data assign to other dataframe
 
 df <- read_csv("Data/clean_data.csv", show_col_types = FALSE) |>
   select(-1) |> 
   mutate(year = year(date)) 
+```
 
+    ## New names:
+    ## • `` -> `...1`
 
+``` r
 # Create a data frame of event dates for each company
 event_dates <- df |>
   filter(event == 1) |>
@@ -132,7 +140,15 @@ event_dates <- df |>
 # Join the original data frame with the event dates data frame
 df <- df |>
   left_join(event_dates, by = c("company_name" = "company_name", "year" = "year"))
+```
 
+    ## Warning in left_join(df, event_dates, by = c(company_name = "company_name", : Detected an unexpected many-to-many relationship between `x` and `y`.
+    ## ℹ Row 20674 of `x` matches multiple rows in `y`.
+    ## ℹ Row 1 of `y` matches multiple rows in `x`.
+    ## ℹ If a many-to-many relationship is expected, set `relationship =
+    ##   "many-to-many"` to silence this warning.
+
+``` r
 # Create the period variable
 df <- df |>
   drop_na(event_date) |> #for some years there is no event so we drop those observations
@@ -152,10 +168,9 @@ df <- df |>
   ungroup() |> 
   filter(n == 15) |>  # Select only event for which we have all days in event window
   drop_na(ret)
-
 ```
-```{r  Get predictions}
 
+``` r
 # Now we need to get the predicted returns based on the estimation window 
 # For this, for each company and each event we need to run a regression of ret on market_return
 
@@ -184,16 +199,18 @@ df_with_coefficients <- df_with_lin_reg |>
   group_by(company_name, year) |> 
   summarize(alpha = first(alpha[!is.na(alpha)]),
             beta = first(beta[!is.na(beta)]))   
+```
 
+    ## `summarise()` has grouped output by 'company_name'. You can override using the
+    ## `.groups` argument.
 
+``` r
 # Join the coefficients with the main dataset to have all necessary information in one place
 df <- df |> 
   left_join(df_with_coefficients, by = c("company_name", "year"))
-
 ```
-```{r Calculations}
 
-
+``` r
 df <- df |> 
   group_by(company_name, year) |> 
   mutate(predicted_return = alpha + beta * market_return) |> 
@@ -204,23 +221,18 @@ df <- df |>
   mutate(cum_ret = sum(abnorm_ret, na.rm = TRUE)) |>
   mutate(std_dev = sd(abnorm_ret, na.rm = TRUE)) |> 
   ungroup()
-
-
 ```
 
+################################ Visualizations
 
-################################ Visualizations ################################
+Basically each event is taken as one entity so for each event i
+calculated the SD, then SE, and instead of the mean i take the
+cumulative and then with those values I calculate the CI for each event
 
- Basically each event is taken as one entity so for each event i calculated the
- SD, then SE, and instead of the mean i take the cumulative and then with those values
- I calculate the CI for each event
+When plotting however, we need to look at the values in regard to the
+period so i take the average over each period
 
- When plotting however, we need to look at the values in regard to the period
- so i take the average over each period
-
-  
-```{r Filter the needed data}
-
+``` r
 # filter only needed data and calculate CI
 filtered_data <- df |>
   filter(event_window == 1) |>
@@ -242,9 +254,7 @@ filtered_data <- df |>
   mutate(mean_low_CI = mean_low_CI * 100) # Convert mean_low_CI to percentage
 ```
 
-
-```{r Plot 1}
-
+``` r
 #Locally estimated scatter plot smoothing
 ggplot(filtered_data, aes(x = period, y = mean_cum_ret)) +
   geom_line() +
@@ -252,15 +262,11 @@ ggplot(filtered_data, aes(x = period, y = mean_cum_ret)) +
   labs(x = "Period", y = "Mean Cumulative Abnormal Return") +
   theme_minimal() +
   geom_smooth(aes(x = period, y = mean_cum_ret, group = dummy), method = "loess", formula = y ~ x)
-
-
-
 ```
 
+![](event_study_1_files/figure-gfm/Plot%201-1.png)<!-- -->
 
-```{r Plot 2}
-
-
+``` r
 # Plot again with CI
 ggplot(filtered_data, aes(x = period, y = mean_cum_ret)) +
   geom_line() +
@@ -268,15 +274,11 @@ ggplot(filtered_data, aes(x = period, y = mean_cum_ret)) +
   geom_vline(xintercept = 0, color = "blue") +
   labs(x = "Period", y = "Mean Cumulative Return") +
   theme_minimal()
-
-
-
-
 ```
 
+![](event_study_1_files/figure-gfm/Plot%202-1.png)<!-- -->
 
-```{r Plot 3}
-
+``` r
 # Another type of graph commonly used but the geom_segment does not work as intended. 
 ggplot(filtered_data, aes(x = period, y = mean_cum_ret)) +
   geom_vline(xintercept = 0, color = "blue") +
@@ -285,6 +287,6 @@ ggplot(filtered_data, aes(x = period, y = mean_cum_ret)) +
                linewidth = 0.5, lineend = "butt") + 
   labs(x = "Period", y = "Mean Cumulative Return") +
   theme_minimal()
-
 ```
 
+![](event_study_1_files/figure-gfm/Plot%203-1.png)<!-- -->
