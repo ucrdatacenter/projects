@@ -32,10 +32,6 @@ head(data)
 data %>% 
   select(Square, Spit, Weight)
 
-# Alternatively, if we only want columns that have numbers, we can use the where function
-
-data %>% 
-  select(where(is.numeric))
 
 # We now want to get into plotting our data
 # For this we are only interested in the Square, Spit, Material, Weight and Thick columns
