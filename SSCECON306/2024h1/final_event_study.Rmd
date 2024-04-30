@@ -264,7 +264,7 @@ filtered_data |>
   ggplot(aes(period, abnorm_ret)) +
   geom_line() +
   geom_vline(xintercept = 0) +
-  labs(x = "Period", y = "Mean Abnormal Return")
+  labs(x = "Period", y = "Mean Abnormal Return") +
   theme_minimal()
 
 
@@ -304,7 +304,7 @@ sig_subset |>
   ggplot(aes(period, abnorm_ret)) +
   geom_line() +
   geom_vline(xintercept = 0) +
-  labs(x = "Period", y = "Mean Abnormal Return")
+  labs(x = "Period", y = "Mean Abnormal Return") +
   theme_minimal()
 
   
