@@ -241,7 +241,7 @@ test_per_company <- filtered_data |>
   ) |> 
   ungroup() |> 
   distinct(company_name, year, test) |>
-  arrange(desc(abs(test)))
+  arrange(desc(test))
 # Here we can see that only 22 events are statistically significant, meaning that only for these events the impact of the M&A is different from zero. 
 # Out of the 22 significant events, 12 were higher than expected while 10 were lower than expected
 

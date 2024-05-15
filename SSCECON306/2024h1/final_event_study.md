@@ -257,8 +257,9 @@ test_per_company <- filtered_data |>
   ) |> 
   ungroup() |> 
   distinct(company_name, year, test) |>
-  arrange(desc(abs(test)))
-# Here we can see that only the first 22 events are statistically significant, meaning that only for these events the impact of the M&A is different from zero. 
+  arrange(desc(test))
+# Here we can see that only 22 events are statistically significant, meaning that only for these events the impact of the M&A is different from zero. 
+# Out of the 22 significant events, 12 were higher than expected while 10 were lower than expected
 
 
 # Now for all companies
@@ -281,7 +282,7 @@ filtered_data |>
     ## 0.002091476
 
 ``` r
-# These results are highly insignificant showing that the event had a statistically insignificant impact on the cumulative abnormal returns of all companies. This can be explained by the fact that the stock market is highly unpredictable so the same event will impact a company's stock prices in completely different ways as it is dependent on so many other factors. 
+# These results are highly insignificant showing that the event had a statistically insignificant impact on the cumulative abnormal returns of all events. This can be explained by the fact that the stock market is highly unpredictable so the same event will impact a company's stock prices in completely different ways as it is dependent on so many other factors. 
 ```
 
 ``` r
@@ -320,27 +321,41 @@ filtered_data |>
 ![](final_event_study_files/figure-gfm/unnamed-chunk-1-1.png)<!-- -->
 
 ``` r
-# Just to visualize the significant events
+# Make two subsets for the significant events
 
-sig_comp <- head(test_per_company, 22)
+sig_comp_poz <- head(test_per_company, 12) #the companies with significantly higher returns than expected in the event window
 
-sig_subset <- filtered_data %>%
- semi_join(sig_comp, by = c("company_name", "year"))
+sig_comp_neg <- tail(test_per_company, 10) #the companies with significantly lower returns than expected in the event window
 
+sig_subset_poz <- filtered_data |> 
+ semi_join(sig_comp_poz, by = c("company_name", "year"))
 
-# Visualize the general trends followed by the stock of apple in the event that is statistically significant
-sig_subset |>
+sig_subset_neg <- filtered_data |> 
+  semi_join(sig_comp_neg, by = c("company_name", "year"))
+```
+
+``` r
+# Visualize the general trends in the events that are statistically significant and higher than expected
+sig_subset_poz |>
   group_by(period) |>
   summarize(abnorm_ret = mean(abnorm_ret, na.rm = TRUE)) |>
   ggplot(aes(period, abnorm_ret)) +
   geom_line() +
   geom_vline(xintercept = 0) +
-  labs(x = "Period", y = "Mean Abnormal Return") +
-  theme_minimal()
+  labs(x = "Period", y = "Mean Abnormal Return", title = "Significant Positive Events")
 ```
 
-![](final_event_study_files/figure-gfm/Significant%20events-1.png)<!-- -->
+![](final_event_study_files/figure-gfm/unnamed-chunk-2-1.png)<!-- -->
 
 ``` r
-# Right before and after the event the stocks move in the opposite direction compared to the average of all companies.
+#  Visualize the general trends in the events that are statistically significant and lower than expected
+sig_subset_neg |>
+  group_by(period) |>
+  summarize(abnorm_ret = mean(abnorm_ret, na.rm = TRUE)) |>
+  ggplot(aes(period, abnorm_ret)) +
+  geom_line() +
+  geom_vline(xintercept = 0) +
+  labs(x = "Period", y = "Mean Abnormal Return", title = "Significant Negative Events")
 ```
+
+![](final_event_study_files/figure-gfm/unnamed-chunk-3-1.png)<!-- -->
