@@ -1,25 +1,45 @@
----
-title: "final_event_study"
-output: github_document
-date: "2024-04-08"
----
+final_event_study
+================
+2024-04-08
 
-When selecting the data i started with the data i have available for M&A.
-Because i needed a market variable i choose to look at the S&P500, so from the
-Acquisitions data i selected only the companies in the S&P500.
-Then when i knew what companies i need to look at i downloaded the needed stock data for them.
-Also a note, the M&A are only until 2014 so the stock data was downloaded already
-for the needed time frame
+When selecting the data i started with the data i have available for
+M&A. Because i needed a market variable i choose to look at the S&P500,
+so from the Acquisitions data i selected only the companies in the
+S&P500. Then when i knew what companies i need to look at i downloaded
+the needed stock data for them. Also a note, the M&A are only until 2014
+so the stock data was downloaded already for the needed time frame
 
-```{r Load libraries}
+``` r
 library(tidyverse)
+```
+
+    ## Warning: package 'ggplot2' was built under R version 4.3.3
+
+    ## Warning: package 'tidyr' was built under R version 4.3.3
+
+    ## Warning: package 'purrr' was built under R version 4.3.3
+
+    ## Warning: package 'dplyr' was built under R version 4.3.3
+
+    ## Warning: package 'stringr' was built under R version 4.3.3
+
+    ## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+    ## ✔ dplyr     1.1.4     ✔ readr     2.1.4
+    ## ✔ forcats   1.0.0     ✔ stringr   1.5.1
+    ## ✔ ggplot2   3.5.0     ✔ tibble    3.2.1
+    ## ✔ lubridate 1.9.2     ✔ tidyr     1.3.1
+    ## ✔ purrr     1.0.2     
+    ## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+    ## ✖ dplyr::filter() masks stats::filter()
+    ## ✖ dplyr::lag()    masks stats::lag()
+    ## ℹ Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
+
+``` r
 library(lubridate)
 library(ggplot2)
 ```
 
-
-```{r Import data sets}
-
+``` r
 # The company tickers were manually written for the S&P500 companies present in the
 # M&A data set for which stock prices are available
 
@@ -36,12 +56,14 @@ acquisitions <- read_csv("Data/Raw_data/Acquisitions.csv", show_col_types = FALS
   mutate(date = dmy(date)) |>
   filter(year(date) >= 1995) |> #data before that is very little so just filtered it out
   inner_join(company_tickers, acquisitions, by = "company_name") 
-
 ```
 
+    ## Warning: There was 1 warning in `mutate()`.
+    ## ℹ In argument: `date = dmy(date)`.
+    ## Caused by warning:
+    ## !  1 failed to parse.
 
-```{r Function for importing stock data}
-
+``` r
 # Because the stock prices data does not have a variable to identify the company by
 # I decided to do a function that would take the name of the file (company ticker)
 # and put it as the observation in the data file under the ticker variable
@@ -62,13 +84,9 @@ stock_prices <- data.frame()
 for (file in files) {
   stock_prices <- bind_rows(stock_prices, get_observation(file))
 }
-
 ```
 
-
-```{r Data manipulation to get the final clean data set}
-
-
+``` r
 # Clean stock price data and add company names
 stock_prices <- stock_prices |>
   rename(date = Date) |>
@@ -103,23 +121,21 @@ clean_data <- clean_data |>
 # Save the data frame
 write.csv(clean_data, file = "Data/clean_data.csv")
 # This is the data file with acquisitions and stock prices before any manipulations
-
-
 ```
 
+######################### Start the actual event study
 
-######################### Start the actual event study ######################### 
-
-
-```{r Clean data frame for study}
-
-
+``` r
 # To not mess with the clead data assign to other dataframe
 df <- read_csv("Data/clean_data.csv", show_col_types = FALSE) |>
   select(-1) |> 
   mutate(year = year(date)) 
+```
 
+    ## New names:
+    ## • `` -> `...1`
 
+``` r
 # Create a data frame of event dates for each company
 event_dates <- df |>
   filter(event == 1) |>
@@ -133,7 +149,15 @@ event_dates <- df |>
 # Join the original data frame with the event dates data frame
 df <- df |>
   left_join(event_dates, by = c("company_name" = "company_name", "year" = "year"))
+```
 
+    ## Warning in left_join(df, event_dates, by = c(company_name = "company_name", : Detected an unexpected many-to-many relationship between `x` and `y`.
+    ## ℹ Row 40435 of `x` matches multiple rows in `y`.
+    ## ℹ Row 1 of `y` matches multiple rows in `x`.
+    ## ℹ If a many-to-many relationship is expected, set `relationship =
+    ##   "many-to-many"` to silence this warning.
+
+``` r
 # Create the period variable
 df <- df |>
   drop_na(event_date) |> #for some years there is no event so we drop those observations
@@ -153,13 +177,9 @@ df <- df |>
   ungroup() |> 
   filter(n == 15) |>  # Select only event for which we have all days in event window
   drop_na(ret)
-
 ```
 
-
-
-```{r  Get predictions}
-
+``` r
 # Now we need to get the predicted returns based on the estimation window 
 # For this, for each company and each event we need to run a regression of ret on market_return
 
@@ -196,17 +216,18 @@ df_with_coefficients <- df_with_lin_reg |>
   group_by(company_name, year) |> 
   summarize(alpha = first(alpha[!is.na(alpha)]),
             beta = first(beta[!is.na(beta)]))   
+```
 
+    ## `summarise()` has grouped output by 'company_name'. You can override using the
+    ## `.groups` argument.
 
+``` r
 # Join the coefficients with the main dataset to have all necessary information in one place
 df <- df |> 
   left_join(df_with_coefficients, by = c("company_name", "year"))
-
 ```
 
-
-```{r Calculations}
-
+``` r
 # Use the formulas here (https://www.eventstudytools.com/expected-return-models) to calculate normal(predicted) and abnormal returns using the market model.
 df <- df |> 
   group_by(company_name, year) |> 
@@ -216,14 +237,9 @@ df <- df |>
     TRUE ~ 0
   )) |> 
   ungroup()
-  
-
-
 ```
 
-
-```{r Ttest}
-
+``` r
 # Filter the data only for the event window, calculate the cummulative abnormal returns and the standard deviation for each event
 filtered_data <- df |>
   filter(event_window == 1) |> 
@@ -251,13 +267,25 @@ test_per_company <- filtered_data |>
 filtered_data |>
   distinct(company_name, year, cum_ret) |>
   t.test(cum_ret ~ 1, data = _)
-
-# These results are highly insignificant showing that the event had a statistically insignificant impact on the cumulative abnormal returns of all events. This can be explained by the fact that the stock market is highly unpredictable so the same event will impact a company's stock prices in completely different ways as it is dependent on so many other factors. 
-
 ```
 
-```{r Visualization}
+    ## 
+    ##  One Sample t-test
+    ## 
+    ## data:  cum_ret
+    ## t = 0.32897, df = 165, p-value = 0.7426
+    ## alternative hypothesis: true mean is not equal to 0
+    ## 95 percent confidence interval:
+    ##  -0.01046127  0.01464422
+    ## sample estimates:
+    ##   mean of x 
+    ## 0.002091476
 
+``` r
+# These results are highly insignificant showing that the event had a statistically insignificant impact on the cumulative abnormal returns of all events. This can be explained by the fact that the stock market is highly unpredictable so the same event will impact a company's stock prices in completely different ways as it is dependent on so many other factors. 
+```
+
+``` r
 # Visualize the general trends followed by the stocks on each day
 filtered_data |>
   group_by(period) |>
@@ -267,15 +295,11 @@ filtered_data |>
   geom_vline(xintercept = 0) +
   labs(x = "Period", y = "Mean Abnormal Return") +
   theme_minimal()
-
-
-
 ```
 
+![](final_event_study_files/figure-gfm/Visualization-1.png)<!-- -->
 
-
-```{r}
-  
+``` r
 # Visualize how the stocks of all companies behave
 # We can see that while some companies have increases in the returns, others have decreseases which in the end collapse to approximatelly zero which may be an explanation of why the effects over all companies are not significant. 
 filtered_data |>
@@ -286,10 +310,17 @@ filtered_data |>
   theme_minimal()
 ```
 
+    ## `geom_smooth()` using method = 'gam' and formula = 'y ~ s(x, bs = "cs")'
 
+    ## Warning: Removed 105 rows containing non-finite outside the scale range
+    ## (`stat_smooth()`).
 
-```{r Significant events}
+    ## Warning: Removed 105 rows containing missing values or values outside the scale range
+    ## (`geom_line()`).
 
+![](final_event_study_files/figure-gfm/unnamed-chunk-1-1.png)<!-- -->
+
+``` r
 # Make two subsets for the significant events
 
 sig_comp_poz <- head(test_per_company, 12) #the companies with significantly higher returns than expected in the event window
@@ -301,11 +332,9 @@ sig_subset_poz <- filtered_data |>
 
 sig_subset_neg <- filtered_data |> 
   semi_join(sig_comp_neg, by = c("company_name", "year"))
-
-
 ```
-```{r}
 
+``` r
 # Visualize the general trends in the events that are statistically significant and higher than expected
 sig_subset_poz |>
   group_by(period) |>
@@ -314,11 +343,11 @@ sig_subset_poz |>
   geom_line() +
   geom_vline(xintercept = 0) +
   labs(x = "Period", y = "Mean Abnormal Return", title = "Significant Positive Events")
-  
 ```
 
-```{r}
-  
+![](final_event_study_files/figure-gfm/unnamed-chunk-2-1.png)<!-- -->
+
+``` r
 #  Visualize the general trends in the events that are statistically significant and lower than expected
 sig_subset_neg |>
   group_by(period) |>
@@ -327,6 +356,6 @@ sig_subset_neg |>
   geom_line() +
   geom_vline(xintercept = 0) +
   labs(x = "Period", y = "Mean Abnormal Return", title = "Significant Negative Events")
-
-
 ```
+
+![](final_event_study_files/figure-gfm/unnamed-chunk-3-1.png)<!-- -->
