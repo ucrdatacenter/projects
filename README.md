@@ -1,9 +1,10 @@
 # UCR Data Center projects
+Hello
 
 # Information for UCR students:
 
 ## Purpose
-
+cvu
 This repository collects files used in UCR data encounter courses.
 
 You can view and download data files, code, and other materials relevant for your course assignments from this repository.
