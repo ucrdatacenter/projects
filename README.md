@@ -1,5 +1,7 @@
 # UCR Data Center projects
 
+This is an explanation of how the repo works.
+
 # Information for UCR students:
 
 ## Purpose
