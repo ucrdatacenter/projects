@@ -1,0 +1,183 @@
+---
+title: "AH-RHET101_DataEncounter Homework 4"
+author: "Name Student (Student Number)"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+# ignore this code, it is just to set up the Rmarkdown file
+knitr::opts_chunk$set(echo = TRUE, message=FALSE, warning=FALSE, error=FALSE)
+```
+
+# Homework 3
+
+During the workshop in class you were introduced to R and learned about the filter() function, creating tibbles, segmenting texts into words and sentences, and visualising your data using ggplot. In this homework assignment you will complete four small assignments to apply what you learned in class.
+
+The file you are currently working on is called a "RMarkdown file", which allows you to combine text, code, and the output of that code (like plots or tables) in one file. You will not have to change any of its structure but only focus on writing after the **Answer:** boxes, or working in the grey boxes that contain and execute the code.
+
+In the top left courner you will see the following: "*Source*" / "*Visual*". By selecting "*Visual"* the file will become more user-friendly to work in.
+
+If necessary, reload the packages: You can press the little green arrow to run the code below.
+
+```{r}
+library(tidyverse)
+library(tidytext)
+library(textdata)
+```
+
+### Step 1: Create a tibble for EU parliament members
+
+The current European Parliament (EP) consists of 720 members (MEPs). The code below will create a small tibble for you titled *mep_tibble* that contains the following information for six MEPs:
+
+1.  **name**: This contains the full name of each MEP.
+2.  **age**: The age of the MEP in years.
+3.  **work_experience_ep**: The number of years that the MEP has worked in the European Parliament
+4.  **country**: The country that the MEP is representing in the European Parliament
+5.  **political_group**: The EP political group that the MEP works for.
+
+Execute the code by pressing the green little arrow. It will open the tibble on your screen.
+
+```{r}
+mep_tibble <- mep_tibble <- tibble(
+  name = c("Mika Aaltola", "Saskia Bricmont", "Maravillas Abadía Jover", "Sven Mikser", "Ana Miranda", "Sara Matthieu"),
+  age = c(55, 40, 43, 51, 53, 43),
+  work_experience_ep = c(1, 6, 1, 6, 13, 5),
+  country = c("Finland", "Belgium", "Spain", "Estonia", "Spain", "Belgium"),
+  political_group = c("EPP", "Greens-EFA", "EPP", "S&D", "Greens-EFA", "Greens-EFA")
+)
+
+view(mep_tibble)
+```
+
+Investigate the dataframe and answer the following questions:
+
+1.  How many columns does the tibble contain? How many rows?
+
+    Does each column involve a different variable and each row an observation for this variable?
+
+2.  How many members of the *Greens-EFA* political group can you find?
+
+3.  How many different countries can you identify in the tibble?
+
+**Answer 1:** Please type your answers here
+
+**Answer 2:** Please type your answers here
+
+**Answer 3:** Please type your answers here
+
+### Step 2: Filter variables
+
+Imagine that you only want to keep MEPs who fulfill a certain criteria. For this we can use the *filter()* function as you saw in class.
+
+An example code has been provided for you that filters MEP that are part of the Greens-EFA or S&D. It is up to you to complete three other dataframes by using the appropriate logical operators, which include:
+
+| Operator       | Operator Sign | Operator                 | Operator sign |
+|----------------|---------------|--------------------------|---------------|
+| equals         | ==            | smaller than             | \<            |
+| does not equal | !=            | larger than              | \>            |
+| and            | &             | smaller than or equal to | \<=           |
+| or             | \|            | larger than or equal to  | \>=           |
+
+1\. A tibble that only contains MEPs who are older than 50.
+
+2\. A tibble that only contains MEPS who are from Finland or Estonia. (*Hint: for this you will need to use three operators*)
+
+3\. A tibble that only contains the MEPs who are younger than 50 and have worked in the European Parliament for 5 or more years. (*Hint: for this you will need to use three operators*)
+
+```{r}
+#This is an example tibble that filters MEP who make part of the Green-EPA or of the S&D
+tibble_greens_efa <- mep_tibble |>
+  filter(political_group == "Greens-EFA" | political_group == "S&D")
+  
+#Create a tibble with MEPs older than 50 
+tibble_01 <- mep_tibble |>
+  filter()
+
+#Create a tibble with MEPs who are from Finland or Estonia
+tibble_02 <- mep_tibble |>
+  filter()
+
+#Create a tibble with MEPS younger than 50 and who have worked for the EP for more than 5 years
+tibble_03 <- mep_tibble |>
+  filter()
+  
+```
+
+### Step 3: Create visualisation
+
+Using the *mep_tibble* from step 2, we can create a bar chart with *country* on the x-axis to observe the number of countries that are represented by the MEPs. It would also be interesting to see a different colour for each political group, which we can achieve by using *fill*. It is up to you to complete the visual by assigning the correct variables to each argument in the code below.
+
+Which countries occur most frequently in the results?
+
+**Answer:** Please type your answer here.
+
+```{r}
+#Create the visualisation below
+mep_tibble |> 
+  ggplot() +
+  geom_bar(aes(
+    #Assign the appropriate variables for x and fill. Keep the comma (,) that follows x.
+    x = ,
+    fill = 
+  )) +
+  #Come up with an appropriate title for the bar chart. This should be placed between " " marks
+  labs(
+    title = ""
+  )
+```
+
+### Step 4: Unnest words and sentences from speech
+
+Please run the following code below. These are two paragraphs that make up a speech by Mika Aaltola. It was extracted from: <https://www.google.com/url?sa=t&source=web&rct=j&opi=89978449&url=https://www.europarl.europa.eu/sedcms/speech/20250121/2017011215277_01_en.docx&ved=2ahUKEwiUodn6_8eMAxUsgf0HHX6wPeUQFnoECBoQAQ&usg=AOvVaw1XKBReVylEWrhv_xf0nMWt>
+
+```{r}
+aaltola_speech <- ("Mr President, Commissioner, many of us watched yesterday's commencement speech with keen interest. President Trump's primary focus was evident as much as it is domestic. His policies have external ramifications, from tariffs to Paris Treaty. He will significantly increase US defence spending and promote US exceptionalism without hesitance. He promised American revival and primacy. His method echoes previous US presidents: if you have a big enough stick, you will be heard even when you speak softly.
+
+Unfortunately, Europe lacks such power. Our defence spending still lacks and is insufficiently used. Aid for Ukraine has to continue, even when the US withdraws from it, for the next three months, if necessary, alone. Without that strength, our voices go unheard. No matter how loudly we yell, the rest of the world only yawns. Now we need to alter our approach radically. Our policies need to prioritise European geostrategic interests.
+")
+```
+
+We can break up the speech into paragraphs by using the *unnest_tokens()* function. Run the code below and investigate the variables:
+
+```{r}
+paragraphs <- aaltola_speech |>
+  as_tibble() |> 
+  unnest_tokens(output = paragraphs, input = value, token = "paragraphs")
+
+view(paragraphs)
+```
+
+Now, it is up to you to break up the text into words and sentences by adapting the code above. For this you will only have to edit the *output =*, and the *token =* arguments.
+
+As a potential additional challenge, you can count the number of words by using the *count()* function and sorting them in descending order. Afterwards, answer the following questions:
+
+1.  How many words are there in the speech?
+2.  How many sentences are there in the speech?
+3.  Optional: What word occurs most frequently?
+
+**Answer 1:** Please type your answer here.
+
+**Answer 2:** Please type your answer here.
+
+**Answer 3:** Please type your answer here.
+
+```{r}
+#Please complete the code below
+
+#Extracted words from the Aaltola speech
+words <- aaltola_speech |>
+
+#Extracted sentences from the Aaltola speech
+sentences <- aaltola_speech |>
+  
+#Word frequency list from the Aaltola speech
+word_list <- words |>
+```
+
+### Step 5: Knit file into HTML file and upload it to Moodle
+
+If you have completed all exercises it is time to knit this file into a HTML file. On the top of the RMarkdown file, you will see the option "Knit" with a ball of yarn next to it. If you press this button it will convert this RMarkdown file into a HTML file that you can upload to Moodle. In case your code has any issues, try to resolve this first. Otherwise, upload this Rmarkdown file instead of a HTML file.
+
+### Step 6: Reflect in logbook
+
+Reflect on this homework assignment and workshop in your logbook, so you can include it in the final Gibbs reflection. Try to think of the different Gibbs components when writing your reflections.
