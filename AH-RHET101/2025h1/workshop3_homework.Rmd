@@ -174,9 +174,9 @@ sentences <- aaltola_speech |>
 word_list <- words |>
 ```
 
-### Step 5: Knit file into HTML file and upload it to Moodle
+### Step 5: Knit file into HTML file
 
-If you have completed all exercises it is time to knit this file into a HTML file. On the top of the RMarkdown file, you will see the option "Knit" with a ball of yarn next to it. If you press this button it will convert this RMarkdown file into a HTML file that you can upload to Moodle. In case your code has any issues, try to resolve this first. Otherwise, upload this Rmarkdown file instead of a HTML file.
+If you have completed all exercises it is time to knit this file into a HTML file. On the top of the RMarkdown file, you will see the option "Knit" with a ball of yarn next to it. If you press this button it will convert this RMarkdown file into a HTML file where you can see all of your work nicely displayed. In case your code has any issues, try to resolve this first. Otherwise, keep this Rmarkdown file instead of a HTML file.
 
 ### Step 6: Reflect in logbook
 
