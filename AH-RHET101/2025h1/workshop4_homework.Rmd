@@ -1,0 +1,188 @@
+---
+title: "AH-RHET101 Data Encounter Homework 4"
+author: "Name Student (Student Number)"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+# ignore this code, it is just to set up the Rmarkdown file
+knitr::opts_chunk$set(echo = TRUE, message=FALSE, warning=FALSE, error=FALSE)
+```
+
+------------------------------------------------------------------------
+# Homework 4
+
+During the workshop in class you learned how to use the Bing sentiment lexicon to conduct a sentiment analysis on a TED talk. However, the sentiment analysis only uses "positive" and "negative" words. Luckily, R has another sentiment lexicon titled "nrc" which includes 10 sentiments based on different emotions. This could potentially provide more specific insights into the sentiment of the talk. Additionally, we can learn more about the sentiment of this talk by comparing it to the sentiment of the other talks. This is what you will investigate in this homework assignment.
+
+You are currently working in a Rmarkdown file. It is recommend that this is located in the same R project as the R script you created during class, so you can easily access the previous code. You can do this by downloading this Rmarkdown file and saving it in your 'Workshop 04' folder.
+
+First, change the "author" field to your name and student number. Then, you can start with the assignment.
+
+If necessary, reload the packages: You can press the little green arrow to run the code below. Additionally, it is recommend to use the code that is in the R script you created in class. This code can also be found on the UCR Data center website: [**https://ucrdatacenter.github.io/courses/AH-RHET101/workshop4/**](https://ucrdatacenter.github.io/courses/AH-RHET101/workshop4/){.uri}
+
+```{r}
+library(tidyverse)
+library(tidytext)
+library(textdata)
+```
+
+### Step 1: Import the three TED talks
+
+To investigate the TED talks, you first have to create three variables to store the text of the TED talks. These have been titled *ted_lines_Ketakandriana*, *ted_lines_Lessig* and *ted_lines_Ongele* and can be created by running the code below by pressing the green little arrow.
+
+```{r}
+ted_lines_Rafitoson <- readLines("https://github.com/ucrdatacenter/projects/raw/refs/heads/main/AH-RHET101/2025h1/Texts/Ted_Talk_Ketakandriana_Rafitoson.txt")
+ted_lines_Lessig <- readLines("https://github.com/ucrdatacenter/projects/raw/refs/heads/main/AH-RHET101/2025h1/Texts/Ted_Talk_Lawrence_Lessig.txt")
+ted_lines_Ongele <- readLines("https://github.com/ucrdatacenter/projects/raw/refs/heads/main/AH-RHET101/2025h1/Texts/Ted_Talk_Sofia_Ongele.txt")
+```
+
+### Step 2: Tokenise the sentences of each talk
+
+Next, you should tokenise the sentences of each talk and store them each in their separate variables titled *sentences_ted_Rafitoson*, *sentences_ted_Lessig* and *sentences_ted_Ongele*. The first part of the code has been provided already. It is up to you to create the remaining two variables
+
+```{r}
+#Tokenise the sentences of the Rafitoson TED talk
+sentences_ted_Rafitoson <- ted_lines_Rafitoson |>
+  as_tibble() |> 
+  unnest_tokens(output = sentences, input = value, token = "sentences", to_lower = FALSE)
+
+#You can place your own code here and execute it by using the little green arrow.
+#This box is created by placing the code between the ``` and ``` borders as well as the {r} message. This is good to know in case you accidentally delete one, or want to add another box yourself.
+
+#Tokenise the sentences of the Lessig TED talk
+
+#Tokenise the sentences of the Ongele TED talk
+
+
+```
+
+### Step 3: Tokenise the words of each talk
+
+Now, complete the code below and tokenise the words of each talk. For this you can use the code below but adapt it to words instead of sentences.
+
+```{r}
+#Tokenise the words of the Rafitoson TED talk
+words_ted_Rafitoson <-
+  
+#Tokenise the words of the Lessig TED talk
+words_ted_Lessig <-
+  
+#Tokenise the words of the Ongele TED talk
+words_ted_Ongele <-
+  
+```
+
+### Step 4: Install the NRC sentiment lexicon
+
+You should now install (if necessary) and load the NRC sentiment lexicons. If you have not yet installed the lexicon, the console will prompt you to confirm the installation of the lexicon.
+
+```{r}
+#Install the NRC sentiment lexicon
+nrc <-
+  
+```
+
+### Step 5: Obtain the words from each talk that align with the NRC lexicon
+
+Now you should create a ted_words_nrc variable for each of the talks. These variables should contain the words from each talk that align with the NRC lexicon. The first variable has been provided for you. It is up to you to create the remaining two.
+
+```{r}
+#This dataframe contains the words that overlap between the NRC sentiment lexicon and the TED talk by Rafitoson
+words_ted_Rafitoson_nrc <- words_ted_Rafitoson |>
+  inner_join(nrc) |>  
+  count(word, sentiment)
+
+#This dataframe contains the words that overlap between the NRC sentiment lexicon and the TED talk by Lessig
+words_ted_Lessig_nrc <- 
+
+#This dataframe contains the words that overlap between the NRC sentiment lexicon and the TED talk by Ongele
+words_ted_Ongele_nrc <- 
+  
+```
+
+### Step 6: Rearrange the words
+
+Now you should rearrange the words in each of the *ted_words_nrc* variables. It is recommended to keep the top 5 results.These should all be stored in a new variable.
+
+```{r}
+#The top 5 most used words in the NRC sentiment lexicon for the TED talk by Rafitoson
+words_ted_Rafitoson_nrc_arranged <-
+
+#The top 5 most used words in the NRC sentiment lexicon for the TED talk by Lessig
+words_ted_Lessig_nrc_arranged <-
+
+  #The top 5 most used words in the NRC sentiment lexicon for the TED talk by Ongele
+words_ted_Ongele_nrc_arranged <-
+  
+```
+
+### Step 7: Create visualisation for NRC word list
+
+Make a visualisation for each of the nrc word lists. In total you should have three different visualisations.
+
+Title each graph appropriately, so it is easy to identify which talk it concerns. It is also recommended to use **facet_wrap(\~sentiment, scales = "free")**. The code for this has been provided for the first talk. It is up to to write the correct aesthetics, and replicate this for the other two talks.
+
+Note, that the scales below the grids will look a bit weird, this is okay.
+
+```{r}
+#This ggplots shows the top 5 most common words based on different sentiments in the TED talk by Rafitoson
+words_ted_Rafitoson_nrc_arranged |> 
+  ggplot() + 
+  geom_col() + 
+  labs(
+    title = "Most Common Emotional Words in Ted Talk by Rafitoson",
+    x = "Frequency", 
+    y = NULL
+  ) +
+  facet_wrap(~sentiment, scales = "free")
+
+#This ggplots shows the top 5 most common words based on different sentiments in the TED talk by Lessig
+words_ted_Lessig_nrc_arranged |>
+
+#This ggplots shows the top 5 most common words based on different sentiments in the TED talk by Ongele
+words_ted_Ongele_nrc_arranged |>
+  
+```
+
+
+### Step 8: Comparing the usages of democracy
+
+Looking at the different visualisation, you will see that each talks includes the word "democracy" in the positive sentiment list. In class, we have investigated how Rafitoson frames democracy in her talks. However, it can be interesting to compare and contrast this with the other talks. Therefore, you should extract each sentence that contains democracy from each of the each talks and answer whether the talk is:
+
+1.) Viewing democracy as a value
+
+2.) Believing democracy is under threat and in need of defence
+
+3.) Using democracy as leverage, trying to make a point persuasive by linking it to democracy.
+
+```{r}
+#The sentences in the talk by Rafitoson that include the word democracy
+sentences_ted_Rafitoson |> 
+
+#The sentences in the talk by Lessig that include the word democracy
+sentences_ted_Lessig |> 
+
+#The sentences in the talk by Ongele that include the word democracy
+sentences_ted_Ongele |> 
+  
+```
+
+**Answer:** Please type you answer to the question here
+
+### Step 9: Investigate the most commons emotional words in each talk
+
+Lastly, compare and contrast the different emotional words used in each of the talks. Answer the following questions:
+
+1\. Which emotional words do the talks have in common? Does it align with the idea that the current democracy is under threat?
+
+2\. Which emotional words do the talks differ in?
+
+**Answer:** Please type your answer here
+
+### Step 10: Knit file into HTML file
+
+If you have completed all exercises it is time to knit this file into a HTML file. On the top of the RMarkdown file, you will see the option "Knit" with a ball of yarn next to it. If you press this button it will convert this RMarkdown file into a HTML file where you can see all of your work nicely displayed. In case your code has any issues, try to resolve this first. Otherwise, keep this Rmarkdown file instead of a HTML file.
+
+### Step 11: Reflect in logbook
+
+Now that you have concluded your sentiment analyses reflect on this homework assignment and workshop in your logbook, so you can include it in the final Gibbs reflection. Try to think of the different Gibbs components when writing your reflections.

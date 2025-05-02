@@ -1,0 +1,118 @@
+---
+title: "AH-RHET101_DataEncounter Homework 4"
+author: "Name Student (Student Number)"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+# ignore this code, it is just to set up the Rmarkdown file
+knitr::opts_chunk$set(echo = TRUE, message=FALSE, warning=FALSE, error=FALSE)
+```
+
+# Homework 3
+
+During the workshop in class you were introduced to R and learned about the filter() function, creating tibbles, segmenting texts into words and sentences, and visualising your data using ggplot.
+
+In this homework assignment you will complete five small assignments to apply what you learned in class.
+
+If necessary, reload the packages: You can press the little green arrow to run the code below.
+
+```{r}
+library(tidyverse)
+library(tidytext)
+library(textdata)
+```
+
+### Step 1: Create a tibble for EU parliament members
+
+The current European Parliament (EP) consists of 720 members (MEPs). Please create a small tibble titled *mep_tibble* with the following columns and observations of 6 selected MEPs:
+
+1\. name:"Mika Aaltola", "Saskia Bricmont", "Maravillas Abadía Jover", "Sven Mikser", "Ana Miranda", "Sara Matthieu"
+
+2\. age: 55, 40, 43, 51, 53, 43
+
+3\. work_experience_ep: 1, 6, 1, 6, 13, 5
+
+4\. country: "Finland", "Belgium", "Spain", "Estonia", "Spain", "Belgium"
+
+5\. political_group: "EPP", "Greens-EFA", "EPP", "S&D", "Greens-EFA", "Greens-EFA"
+
+```{r}
+#Create your tibble here and execute the code by pressing the little green arrow.
+mep_tibble <-
+```
+
+### Step 2: Filter variables
+
+Create three separate dataframes with the following filtered results:
+
+1\. A data frame that only contains MEPs who are older than 50.
+
+2\. A data frame that only contains MEPS who are from Finland or Estonia
+
+3\. A data frame that only contains the MEPs who are younger than 50 and have worked in the European Parliament for 5 or more years.
+
+```{r}
+#Create the three different tibbles below
+tibble_01 <- 
+tibble_02 <- 
+tibble_03 <- 
+```
+
+### Step 3: Create visualisation
+
+Using the *mep_tibble* from step 2, create a bar chart with *country* on the x-axis. For fill you should select *political_group.* Try to label your plot using the labs() function
+
+Which countries occur most frequently in the results?
+
+**Answer:** Please type your answer here.
+
+```{r}
+#Create the visualisation below
+
+```
+### Step 4: Unnest words and sentences from speech
+
+Please run the following code below. These are two paragraphs that make up a speech by Mika Aaltola. It was extracted from: <https://www.google.com/url?sa=t&source=web&rct=j&opi=89978449&url=https://www.europarl.europa.eu/sedcms/speech/20250121/2017011215277_01_en.docx&ved=2ahUKEwiUodn6_8eMAxUsgf0HHX6wPeUQFnoECBoQAQ&usg=AOvVaw1XKBReVylEWrhv_xf0nMWt>
+
+```{r}
+aaltola_speech <- ("Mr President, Commissioner, many of us watched yesterday's commencement speech with keen interest. President Trump's primary focus was evident as much as it is domestic. His policies have external ramifications, from tariffs to Paris Treaty. He will significantly increase US defence spending and promote US exceptionalism without hesitance. He promised American revival and primacy. His method echoes previous US presidents: if you have a big enough stick, you will be heard even when you speak softly.
+
+Unfortunately, Europe lacks such power. Our defence spending still lacks and is insufficiently used. Aid for Ukraine has to continue, even when the US withdraws from it, for the next three months, if necessary, alone. Without that strength, our voices go unheard. No matter how loudly we yell, the rest of the world only yawns. Now we need to alter our approach radically. Our policies need to prioritise European geostrategic interests.
+")
+```
+
+Now, unnest the words and sentences from this speech. In addition, count the frequency of the words and sort them in descending order.
+
+How many different words are there in the speech? What word occurs most frequently?
+
+**Answer:** Please type your answer here.
+
+```{r}
+#Please comeplete the code below
+
+#Extracted words from the Aaltola speech
+words <-
+
+#Extracted sentences from the Aaltola speech
+sentences <-
+  
+#Word frequency list from the Aaltola speech
+
+```
+
+### Step 5: Filter out sentences contain words
+
+When looking at the word list, you will notice that the word *"defence*"occurs two times. Extract the sentence(s) in which this word occurs using the *filter()* and *str_detect()* function.
+
+```{r}
+#Please type your code below
+```
+
+### Step 6: Knit file into HTML file and upload it to Moodle
+
+If you have completed all exercises it is time to knit this file into a HTML file. On the top of the RMarkdown file, you will see the option "Knit" with a ball of yarn next to it. If you press this button it will convert this RMarkdown file into a HTML file that you can upload to Moodle. In case your code has any issues, try to resolve this first. Otherwise, upload this Rmarkdown file instead of a HTML file.
+
+### Step 7: Reflect in logbook
+
+Reflect on this homework assignment and workshop in your logbook, so you can include it in the final Gibbs reflection. Try to think of the different Gibbs components when writing your reflections.
