@@ -116,10 +116,8 @@ install.packages("oro.nifti")
 library(oro.nifti) # handling NifTI images
 install.packages("neurobase")
 library(neurobase) # has additional neuroimaging analysis tools
-install.packages("dplyr") 
-library(dplyr) #creating a table with our data
-install.packages("ggplot2")
-library(ggplot2) # we will need later for visualization
+install.packages("tidyverse") 
+library(tidyverse) 
 
 ```
 
@@ -248,16 +246,22 @@ Then we calculate the volume of a single voxel in mm³. We will be doing this vi
 voxel_volume_mm3 <- prod(voxel_dims)
 ```
 
-Now we calculate the product of the number of voxels (`lesion_voxels`) and the volume of a single voxel (`voxel_volume_mm3`) to get the total lesion volume . 
+Now we calculate the product of the number of voxels (`lesion_voxels`) and the volume of a single voxel (`voxel_volume_mm3`) to get the total lesion volume.  
 
 ```{r}
 lesion_volume_mm3 <- lesion_voxels * voxel_volume_mm3
 ```
 
+Now we can transfer this number into cm3.
+
+```{r}
+lesion_volume_cm3 <- lesion_volume_mm3/ 1000
+```
+
 Now we can have a nice output of our result by using the `cat()` base R function, which concatenates and outputs its arguments:
 
 ```{r}
-cat("Lesion Volume:", lesion_volume_mm3, "mm³")
+cat("Lesion Volume:", lesion_volume_cm3, "cm³")
 ```
 
 There is a table also linked to this dataset that contains participants’ information such as sex, age at stroke, race, the days after the stroke when participant took the WAB (Western Aphasia Battery) test, the Aphasia Quotient (AQ) from this test (which is a score out of 100, measuring language function in people with brain injury (like stroke) - see Table 1. on how to interpret the scores for the AQ part of the WAB) and the type of aphasia.
@@ -277,7 +281,7 @@ There is a table also linked to this dataset that contains participants’ infor
 We can load the table containing all this information by doing this. Hit `View(df)` to see the data frame:
 
 ```{r}
-df <- read.delim("files/participants.tsv", sep ="\t", header =TRUE)
+df <- read_tsv("files/participants.tsv")
 View(df)
 
 ```
@@ -294,8 +298,8 @@ calculate_lesion_volume <- function(mask_path) {
   lesion_voxels <- sum(lesion_mask == 1)
   voxel_dims <- pixdim(lesion_mask)[2:4]
   voxel_volume_mm3 <- prod(voxel_dims)
-  lesion_volume <- lesion_voxels * voxel_volume_mm3
-  return(lesion_volume)
+  voxel_volume_cm3 <- voxel_volume_mm3/1000
+  lesion_volume <- lesion_voxels * voxel_volume_cm3
 }
 ```
 
@@ -329,18 +333,12 @@ lesion_volume_M2069 <-calculate_lesion_volume("files/lesion_masks/wsub-M2069_ses
 
 Now we will use the table with the participant information.
 
-For this we will need to use the `dplyr` library, so make sure to copy paste this in the beginning of your code (you might have to download the package):
-
-```{r}
-library(dplyr)
-```
-
 We add the lesion volume variable to this table, but first we create a data frame where we store the participant id with the matching lesion volume. We create the new table like this:
 
 ```{r}
-lesion_volumes <- data.frame(
+lesion_volumes <- tibble(
   participant_id =c("sub-M2001", "sub-M2004", "sub-M2060", "sub-M2069"),
-  lesion_volume_mm3 = c(lesion_volume_M2001, lesion_volume_M2004, lesion_volume_M2060, lesion_volume_M2069)
+  lesion_volume_cm3 = c(lesion_volume_M2001, lesion_volume_M2004, lesion_volume_M2060, lesion_volume_M2069)
 )
 
 ```
@@ -354,7 +352,7 @@ merged_data <- inner_join(df, lesion_volumes, by = "participant_id")
 Finally, we can do our analysis. Let’s do a correlation analysis to see whether higher WAB-AQ scores correlate positively to higher lesion volumes. The `cor.test()` function performs a Pearson’s correlation test, using the lesion volume and WAB-AQ scores as arguments. This outputs the correlation coefficient, p-value and other statistics.
 
 ```{r}
-cor.test(merged_data$lesion_volume_mm3, as.numeric(merged_data$wab_aq))
+cor.test(merged_data$lesion_volume_cm3, as.numeric(merged_data$wab_aq))
 ```
 
 So the correlation is a negative value (-0.5635701), indicating a trend where larger lesion volume indicates lower WAB-AQ scores. The p-value is \> 0.05 (it is 0.4364), meaning that this is not statistically significant. However, we have a very small sample size (4 participants) so that can explain why our results are so insignificant.
@@ -364,13 +362,13 @@ However, it would be nice to visualize this correlation. Let’s create a scatte
 To add a regression line we use geom_smooth, where we set method = “lm” to specify the linear model, and additionally set se=FALSE, to hide the shaded confidence interval around the line (optional).
 
 ```{r}
-ggplot(merged_data, aes(x = lesion_volume_mm3, y = wab_aq, label = participant_id)) + 
+ggplot(merged_data, aes(x = lesion_volume_cm3, y = wab_aq, label = participant_id)) + 
   geom_point(size = 3, color="black") +  
   geom_smooth(method = "lm", se = FALSE, color = "black", size=0.6) +  
   geom_text(vjust = -0.5, size = 3) +  # participant labels
   labs(
     title = "Lesion Volume vs WAB-AQ",
-    x = "Lesion Volume (mm³)",
+    x = "Lesion Volume (cm³)",
     y = "WAB-AQ Score"
   ) +
   theme_minimal()
