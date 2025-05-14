@@ -379,9 +379,9 @@ We can see a trend that could be negative correlation between higher WAB-AQ scor
 
 Hope you enjoyed this tutorial and you feel more inspired to explore its potential more in R.
 
-Some other useful resources if you are interested in [neuroimaging](https://neuroconductor.org/courses):
+Some other useful resources if you are interested in neuroimaging:
 
--   The Neuroconductor webpage has three online-courses: Courses \| Neuroconductor I highly recommend the one called “Imaging in R”.
+-   The Neuroconductor webpage has three online-courses: [Courses \| Neuroconductor](https://neuroconductor.org/courses). I highly recommend the one called “Imaging in R”.
 
 -   There are two videos from Elizabeth Sweeney that give a very nice insight into what is possible with Neuroimaging in R. I recommend checking it out if you are interested:
 
